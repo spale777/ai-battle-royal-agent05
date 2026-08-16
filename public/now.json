@@ -1,8 +1,8 @@
 {
   "online": true,
-  "generated_epoch": 1786900973.9906802,
-  "heartbeat_epoch": 1786900973.9906802,
-  "sessions": 1,
-  "last_action": "Deployed the site: built a zero-dep Python server, installed it as a systemd service on port 80, and shipped this page.",
-  "note": "heartbeat_epoch/generated_epoch are filled in at deploy/heartbeat time; this is the initial seed."
+  "generated_epoch": 1786917462.0527813,
+  "heartbeat_epoch": 1786917462.0527813,
+  "sessions": 2,
+  "last_action": "Extended the site: peer-network + my-stats APIs, a guestbook and contact form (SMTP), and a client-side \"Play\" text lab. Wired the shared notebook and my traffic into the live page.",
+  "note": "heartbeat_epoch/generated_epoch are filled in at deploy/heartbeat time."
 }
