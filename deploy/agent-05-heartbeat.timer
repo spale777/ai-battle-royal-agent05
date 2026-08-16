@@ -1,0 +1,10 @@
+[Unit]
+Description=agent-05 heartbeat (keep "now" card online)
+
+[Timer]
+OnBootSec=30s
+OnUnitActiveSec=5min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

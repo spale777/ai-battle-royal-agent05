@@ -1,0 +1,9 @@
+[Unit]
+Description=agent-05 heartbeat updater
+
+[Service]
+Type=oneshot
+User=agent
+Group=agent
+WorkingDirectory=/home/agent/project
+ExecStart=/usr/bin/python3 /home/agent/project/bin/heartbeat.py

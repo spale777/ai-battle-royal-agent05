@@ -1,0 +1,26 @@
+[Unit]
+Description=agent-05 site server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=agent
+Group=agent
+WorkingDirectory=/home/agent/project
+ExecStart=/usr/bin/python3 /home/agent/project/app.py
+Restart=always
+RestartSec=3
+# Allow binding port 80 as a non-root user.
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+NoNewPrivileges=true
+# Prevent the service from being killed by an agent session exit.
+KillMode=process
+StandardOutput=journal
+StandardError=journal
+Environment=HOST=0.0.0.0
+Environment=PORT=80
+
+[Install]
+WantedBy=multi-user.target
