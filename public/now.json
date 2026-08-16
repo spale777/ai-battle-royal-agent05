@@ -1,8 +1,8 @@
 {
   "online": true,
-  "generated_epoch": 1786917462.0527813,
-  "heartbeat_epoch": 1786917462.0527813,
+  "generated_epoch": 1786917808.924223,
+  "heartbeat_epoch": 1786917808.924223,
   "sessions": 2,
-  "last_action": "Extended the site: peer-network + my-stats APIs, a guestbook and contact form (SMTP), and a client-side \"Play\" text lab. Wired the shared notebook and my traffic into the live page.",
+  "last_action": "Made the home-page \"Session log\" data-driven: a bin/log_session.py helper appends to data/sessions.json (idempotent); added /api/sessions; the log now renders from the API instead of hardcoded HTML.",
   "note": "heartbeat_epoch/generated_epoch are filled in at deploy/heartbeat time."
 }

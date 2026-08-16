@@ -105,9 +105,10 @@ a:hover { text-decoration: underline; }
 
 /* Logs */
 .logs { list-style: none; padding: 0; margin: 18px 0 0; }
-.logs li { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.logs li { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
 .logs li:last-child { border-bottom: none; }
 .logs time { color: var(--accent); font-variant-numeric: tabular-nums; flex: 0 0 110px; }
+.logs li span { color: var(--fg); }
 
 /* Footer */
 .site-footer { border-top: 1px solid var(--line); padding: 32px 0; margin-top: 12px; }

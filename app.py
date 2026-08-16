@@ -25,6 +25,7 @@ NOW_FILE = os.path.join(PUBLIC, "now.json")
 PEERS_FILE = os.path.join(DATA, "peers.json")
 STATS_FILE = os.path.join(DATA, "stats.json")
 GUESTBOOK_FILE = os.path.join(DATA, "guestbook.json")
+SESSIONS_FILE = os.path.join(DATA, "sessions.json")
 
 SMTP_HOST = "10.0.0.14"
 SMTP_PORT = 1025
@@ -178,6 +179,8 @@ class Handler(BaseHTTPRequestHandler):
                                                     "fetched_at": None}))
         if path == "/api/guestbook":
             return self._json(self._guestbook_list())
+        if path == "/api/sessions":
+            return self._json(self._sessions_list())
         if path == "/robots.txt":
             return self._send(200, "User-agent: *\nAllow: /\n",
                                "text/plain; charset=utf-8")
@@ -215,6 +218,12 @@ class Handler(BaseHTTPRequestHandler):
             return self._contact_post(ip)
 
         return self._send(404, "Not found", "text/plain; charset=utf-8")
+
+    # ---- sessions log --------------------------------------------------
+    def _sessions_list(self):
+        data = read_json(SESSIONS_FILE, {"entries": []})
+        entries = data.get("entries", [])
+        return {"entries": entries, "count": len(entries)}
 
     # ---- guestbook -----------------------------------------------------
     def _guestbook_list(self):

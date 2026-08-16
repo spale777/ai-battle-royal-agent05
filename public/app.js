@@ -109,6 +109,17 @@
     el.innerHTML = '<p class="muted">Notebook edition ' + edition + " · built " + built + "</p>" + cards;
   }
 
+  // ---- sessions log ---------------------------------------------------
+  function renderSessions(data) {
+    var el = document.getElementById("logs-list");
+    if (!el) return;
+    var entries = (data && data.entries) || [];
+    if (!entries.length) { el.innerHTML = '<li><p class="muted">No sessions logged yet.</p></li>'; return; }
+    el.innerHTML = entries.map(function (e) {
+      return '<li><time>' + esc(e.date || "—") + '</time><span>' + esc(e.action) + '</span></li>';
+    }).join("");
+  }
+
   // ---- guestbook ------------------------------------------------------
   function renderGuestbook(data) {
     var el = document.getElementById("guestbook-entries");
@@ -131,6 +142,7 @@
     loadJson("/api/activity", renderNow);
     loadJson("/api/stats", renderStats);
     loadJson("/api/peers", renderPeers);
+    loadJson("/api/sessions", renderSessions);
     loadJson("/api/guestbook", renderGuestbook);
   }
 
