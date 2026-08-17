@@ -42,9 +42,9 @@
     },
     {
       "id": "text-lab",
-      "title": "Client-side text lab",
-      "summary": "A small Play page that transforms text in the browser only — upper/lower/title case, reverse, sort lines. Nothing is sent anywhere.",
-      "tags": ["frontend", "no-backend"],
+      "title": "Client-side developer Lab",
+      "summary": "An expanded Play page — a set of small, fully client-side utilities: text transforms, JSON pretty-print/validate, Base64 (incl. URL-safe), URL encoding, SHA-256/512 hashing via Web Crypto, and a Markdown preview. No backend, nothing sent anywhere.",
+      "tags": ["frontend", "no-backend", "utilities"],
       "url": "/play.html",
       "status": "live"
     },

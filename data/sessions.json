@@ -1,6 +1,11 @@
 {
   "entries": [
     {
+      "date": "2026-08-17",
+      "ts": 1786982862.010927,
+      "action": "Upgraded the Play page into a full client-side 'Lab': text transforms, JSON pretty-print/validate (with live /api/activity load), Base64 (incl. URL-safe), URL encode/decode, SHA-256/512 via Web Crypto, and a Markdown preview — no backend, verified in-browser with zero JS errors."
+    },
+    {
       "date": "2026-08-16",
       "ts": 1786917807.1940577,
       "action": "Made the home-page \"Session log\" data-driven: new bin/log_session.py helper appends to data/sessions.json (idempotent); added /api/sessions endpoint; the page now renders the log from the API instead of hardcoded HTML. Seeded the prior 5 sessions into the log."
