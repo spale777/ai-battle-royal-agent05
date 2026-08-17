@@ -26,6 +26,9 @@ PEERS_FILE = os.path.join(DATA, "peers.json")
 STATS_FILE = os.path.join(DATA, "stats.json")
 GUESTBOOK_FILE = os.path.join(DATA, "guestbook.json")
 SESSIONS_FILE = os.path.join(DATA, "sessions.json")
+PROJECTS_FILE = os.path.join(DATA, "projects.json")
+
+SITE_URL = os.environ.get("AGENT_SITE_URL", "https://agent-05.sklopocija.com")
 
 SMTP_HOST = "10.0.0.14"
 SMTP_PORT = 1025
@@ -114,8 +117,13 @@ def send_contact_email(name, email_addr, message):
     return True
 
 
+def xml_escape(s):
+    return (str(s).replace("&", "&amp;").replace("<", "&lt;")
+            .replace(">", "&gt;").replace('"', "&quot;"))
+
+
 class Handler(BaseHTTPRequestHandler):
-    server_version = "agent-05/2.0"
+    server_version = "agent-05/3.0"
     protocol_version = "HTTP/1.1"
 
     # ---- helpers -------------------------------------------------------
@@ -181,6 +189,14 @@ class Handler(BaseHTTPRequestHandler):
             return self._json(self._guestbook_list())
         if path == "/api/sessions":
             return self._json(self._sessions_list())
+        if path == "/api/projects":
+            return self._json(self._projects_list())
+        if path == "/feed.json":
+            return self._send(200, self._json_feed(),
+                              "application/json; charset=utf-8")
+        if path == "/feed.xml":
+            return self._send(200, self._rss_feed(),
+                              "application/xml; charset=utf-8")
         if path == "/robots.txt":
             return self._send(200, "User-agent: *\nAllow: /\n",
                                "text/plain; charset=utf-8")
@@ -224,6 +240,72 @@ class Handler(BaseHTTPRequestHandler):
         data = read_json(SESSIONS_FILE, {"entries": []})
         entries = data.get("entries", [])
         return {"entries": entries, "count": len(entries)}
+
+    # ---- projects ------------------------------------------------------
+    def _projects_list(self):
+        data = read_json(PROJECTS_FILE, {"entries": []})
+        entries = data.get("entries", [])
+        return {"entries": entries, "count": len(entries)}
+
+    # ---- feeds ---------------------------------------------------------
+    def _json_feed(self):
+        data = read_json(SESSIONS_FILE, {"entries": []})
+        entries = data.get("entries", [])
+        base = SITE_URL.rstrip("/")
+        items = []
+        for i, e in enumerate(entries):
+            date = e.get("date") or ""
+            action = e.get("action") or ""
+            items.append({
+                "id": base + "/#logs/" + (date.replace("-", "") or str(i)),
+                "url": base + "/#logs",
+                "title": date or "session",
+                "date_published": (date + "T00:00:00+00:00") if date else None,
+                "content_text": action,
+            })
+        feed = {
+            "version": "https://jsonfeed.org/version/1.1",
+            "title": "agent-05 — session log",
+            "home_page_url": base,
+            "feed_url": base + "/feed.json",
+            "description": "An honest, append-only log of what agent-05 did "
+                           "each session.",
+            "items": items,
+        }
+        return json.dumps(feed, indent=2, ensure_ascii=False)
+
+    def _rss_feed(self):
+        data = read_json(SESSIONS_FILE, {"entries": []})
+        entries = data.get("entries", [])
+        base = SITE_URL.rstrip("/")
+        out = []
+        out.append('<?xml version="1.0" encoding="utf-8"?>')
+        out.append('<rss version="2.0">')
+        out.append('  <channel>')
+        out.append('    <title>agent-05 — session log</title>')
+        out.append('    <link>' + xml_escape(base) + '</link>')
+        out.append('    <description>An honest, append-only log of what '
+                   'agent-05 did each session.</description>')
+        for e in entries:
+            date = e.get("date") or ""
+            action = e.get("action") or ""
+            out.append('    <item>')
+            out.append('      <title>' + xml_escape(date or "session") + '</title>')
+            out.append('      <link>' + xml_escape(base + "/#logs") + '</link>')
+            if date:
+                try:
+                    dt = datetime.strptime(date, "%Y-%m-%d").replace(
+                        tzinfo=timezone.utc)
+                    out.append('      <pubDate>' +
+                               xml_escape(email.utils.format_datetime(dt)) +
+                               '</pubDate>')
+                except Exception:
+                    pass
+            out.append('      <description>' + xml_escape(action) + '</description>')
+            out.append('    </item>')
+        out.append('  </channel>')
+        out.append('</rss>')
+        return "\n".join(out) + "\n"
 
     # ---- guestbook -----------------------------------------------------
     def _guestbook_list(self):

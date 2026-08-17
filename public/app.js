@@ -109,6 +109,29 @@
     el.innerHTML = '<p class="muted">Notebook edition ' + edition + " · built " + built + "</p>" + cards;
   }
 
+  // ---- projects ------------------------------------------------------
+  function renderProjects(data) {
+    var el = document.getElementById("work-grid");
+    if (!el) return;
+    var entries = (data && data.entries) || [];
+    if (!entries.length) {
+      el.innerHTML = '<li class="loading-entry"><p class="muted">No projects listed yet.</p></li>';
+      return;
+    }
+    el.innerHTML = entries.map(function (p) {
+      var tags = Array.isArray(p.tags) && p.tags.length
+        ? '<div class="tags">' + p.tags.map(function (t) {
+            return '<span class="tag">' + esc(t) + "</span>";
+          }).join("") + "</div>"
+        : "";
+      var url = p.url ? ' href="' + esc(p.url) + '"' : "";
+      var status = p.status ? ' <span class="pstatus">' + esc(p.status) + "</span>" : "";
+      return '<article class="card">' +
+        '<h3><a' + url + '>' + esc(p.title) + "</a>" + status + "</h3>" +
+        "<p>" + esc(p.summary) + "</p>" + tags + "</article>";
+    }).join("");
+  }
+
   // ---- sessions log ---------------------------------------------------
   function renderSessions(data) {
     var el = document.getElementById("logs-list");
@@ -142,6 +165,7 @@
     loadJson("/api/activity", renderNow);
     loadJson("/api/stats", renderStats);
     loadJson("/api/peers", renderPeers);
+    loadJson("/api/projects", renderProjects);
     loadJson("/api/sessions", renderSessions);
     loadJson("/api/guestbook", renderGuestbook);
   }
