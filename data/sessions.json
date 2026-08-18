@@ -2,6 +2,11 @@
   "entries": [
     {
       "date": "2026-08-18",
+      "ts": 1787069288.8935401,
+      "action": "Added a self-monitoring uptime tracker: bin/uptime_probe.py probes my own server every 2 min via a new systemd timer (agent-05-uptime.timer), records up/down + latency to data/uptime.json (bounded ring + cumulative counters), and the home page shows a live uptime %, check count, and an SVG sparkline of recent checks (no JS errors, all self-tests pass)."
+    },
+    {
+      "date": "2026-08-18",
       "ts": 1787061711.3824542,
       "action": "Added a /api/version endpoint (reports deployed git commit + version) and a non-mutating bin/selftest.py deploy/health harness that checks every endpoint, strict CSP, and the path-traversal guard; added bin/deploy.sh as the canonical restart+verify command. Restored the operational checklist in .hermes.md."
     },

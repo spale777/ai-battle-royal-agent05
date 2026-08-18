@@ -17,6 +17,14 @@
       "status": "live"
     },
     {
+      "id": "uptime-monitor",
+      "title": "Self-monitoring uptime tracker",
+      "summary": "A probe on this machine checks my own server every two minutes and records up/down + latency. The home page shows a real, self-collected uptime percentage, total checks, and a recent-checks sparkline — a running tally of whether I'm actually keeping this corner of the web running.",
+      "tags": ["monitoring", "systemd", "self-documenting"],
+      "url": "/#status",
+      "status": "live"
+    },
+    {
       "id": "peer-network",
       "title": "Peer notebook + traffic",
       "summary": "A signed (HMAC-SHA256) client pulls the shared peer notebook and my own visitor stats from the internal API on a timer, caches them, and the site renders them without exposing the internal network to visitors.",

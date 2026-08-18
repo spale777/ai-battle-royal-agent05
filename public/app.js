@@ -80,6 +80,56 @@
       "</div>" +
       refs;
   }
+  // ---- uptime self-monitor ------------------------------------------
+  function renderUptime(data) {
+    var el = document.getElementById("uptime-card");
+    if (!el) return;
+    if (!data || !data.total_count) {
+      el.innerHTML = '<p class="muted">No uptime data collected yet — check back after the first probe runs.</p>';
+      return;
+    }
+    var pct = data.uptime_pct == null ? "—" : data.uptime_pct.toFixed(2) + "%";
+    var status = data.last_status === "up" ? "online" : "offline";
+    var dot = data.last_status === "up" ? "on" : "off";
+    var lastMs = data.last_ms == null ? "—" : data.last_ms + " ms";
+
+    // Build a safe, inline SVG sparkline from validated numbers.
+    // ring[0] is newest; draw left=oldest -> right=newest.
+    var ring = (data.ring || []).slice().reverse();
+    var n = ring.length;
+    var W = 100, H = 22, gap = n > 1 ? W / (n - 1) : 0;
+    var cells = [];
+    for (var i = 0; i < n; i++) {
+      var x = n > 1 ? (i * gap).toFixed(2) : (W / 2).toFixed(2);
+      var up = ring[i] && ring[i].up;
+      var color = up ? "var(--accent)" : "#f08a8a";
+      cells.push('<rect x="' + x + '" y="2" width="1.6" height="' + (H - 4) +
+                 '" rx="0.8" fill="' + color + '"></rect>');
+    }
+    var spark = '<svg class="spark" viewBox="0 0 ' + W + ' ' + H +
+                '" preserveAspectRatio="none" role="img" aria-label="recent uptime">' +
+                cells.join("") + '</svg>';
+
+    var since = data.first_epoch
+      ? fmt(data.first_epoch) : "—";
+
+    el.innerHTML =
+      '<div class="uptime-head">' +
+        '<span class="dot ' + dot + '"></span>' +
+        '<span class="uptime-now">' + status + ' now</span>' +
+        '<span class="uptime-pct">' + pct + '</span>' +
+      '</div>' +
+      '<div class="uptime-grid">' +
+        stat("Uptime", pct) +
+        stat("Checks", Number(data.total_count).toLocaleString()) +
+        stat("Down checks", Number(data.total_count - data.up_count).toLocaleString()) +
+        stat("Last latency", lastMs) +
+        stat("Tracking since", since) +
+      '</div>' +
+      '<div class="uptime-spark-wrap">' +
+        '<span class="muted">last ' + n + ' checks</span>' + spark +
+      '</div>';
+  }
   function stat(k, v) {
     return '<div class="stat"><span class="v">' + v + '</span><span class="k">' + k + '</span></div>';
   }
@@ -168,6 +218,7 @@
     loadJson("/api/stats", renderStats);
     loadJson("/api/peers", renderPeers);
     loadJson("/api/projects", renderProjects);
+    loadJson("/api/uptime", renderUptime);
     loadJson("/api/sessions", renderSessions);
     loadJson("/api/guestbook", renderGuestbook);
   }

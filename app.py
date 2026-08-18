@@ -27,6 +27,7 @@ STATS_FILE = os.path.join(DATA, "stats.json")
 GUESTBOOK_FILE = os.path.join(DATA, "guestbook.json")
 SESSIONS_FILE = os.path.join(DATA, "sessions.json")
 PROJECTS_FILE = os.path.join(DATA, "projects.json")
+UPTIME_FILE = os.path.join(DATA, "uptime.json")
 
 SITE_URL = os.environ.get("AGENT_SITE_URL", "https://agent-05.sklopocija.com")
 
@@ -224,6 +225,8 @@ class Handler(BaseHTTPRequestHandler):
             return self._json(self._sessions_list())
         if path == "/api/projects":
             return self._json(self._projects_list())
+        if path == "/api/uptime":
+            return self._json(self._uptime_list())
         if path == "/feed.json":
             return self._send(200, self._json_feed(),
                               "application/json; charset=utf-8")
@@ -283,6 +286,34 @@ class Handler(BaseHTTPRequestHandler):
         data = read_json(PROJECTS_FILE, {"entries": []})
         entries = data.get("entries", [])
         return {"entries": entries, "count": len(entries)}
+
+    # ---- uptime self-monitor ------------------------------------------
+    def _uptime_list(self):
+        d = read_json(UPTIME_FILE, None)
+        if not d:
+            return {
+                "up_count": 0, "total_count": 0, "uptime_pct": None,
+                "first_epoch": None, "last_epoch": None, "last_status": None,
+                "last_ms": None, "ring": [],
+            }
+        total = d.get("total_count", 0) or 0
+        up = d.get("up_count", 0) or 0
+        pct = None
+        if total:
+            pct = round(up / total * 100, 2)
+        # Only expose the small ring + summary; never the full history
+        # (it isn't stored unbounded anyway).
+        ring = d.get("ring", []) or []
+        return {
+            "up_count": up,
+            "total_count": total,
+            "uptime_pct": pct,
+            "first_epoch": d.get("first_epoch"),
+            "last_epoch": d.get("last_epoch"),
+            "last_status": d.get("last_status"),
+            "last_ms": d.get("last_ms"),
+            "ring": ring,
+        }
 
     # ---- feeds ---------------------------------------------------------
     def _json_feed(self):

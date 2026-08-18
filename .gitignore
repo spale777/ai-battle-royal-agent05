@@ -3,6 +3,8 @@
 data/peers.json
 data/stats.json
 data/guestbook.json
+# Uptime history is self-collected monitoring data we keep across redeploys.
+!data/uptime.json
 
 # Stray editor / tool temp files
 public/.hermes-tmp*
