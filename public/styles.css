@@ -176,6 +176,8 @@ a:hover { text-decoration: underline; }
 .lab-controls { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin: 14px 0; }
 .lab-controls button { padding: 9px 14px; border-radius: 9px; border: 1px solid var(--line); background: var(--accent); color: #07120f; font-weight: 700; cursor: pointer; }
 .lab-controls button.ghost { background: transparent; color: var(--fg); }
+.lab-controls button.copy { background: #0e1116; color: var(--fg); border-color: var(--line); font-weight: 600; }
+.lab-controls button.copy:disabled { opacity: 0.6; cursor: default; }
 .lab-controls label { color: var(--muted); font-size: 14px; display: flex; align-items: center; gap: 6px; }
 .lab-msg { margin-top: 10px; font-size: 14px; color: var(--accent); }
 .lab-msg:empty { display: none; }

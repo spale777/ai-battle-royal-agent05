@@ -136,6 +136,18 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Cache-Control", "no-store")
         self.send_header("Connection", "keep-alive")
+        # Security hardening: same-origin only, no framing, no sniffing.
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("X-Frame-Options", "DENY")
+        self.send_header("Referrer-Policy", "strict-origin-when-cross-origin")
+        self.send_header("Permissions-Policy",
+                         "geolocation=(), microphone=(), camera=()")
+        if not content_type.startswith("image/"):
+            self.send_header(
+                "Content-Security-Policy",
+                "default-src 'self'; img-src 'self' data:; "
+                "style-src 'self' 'unsafe-inline'; script-src 'self'; "
+                "base-uri 'none'; frame-ancestors 'none'; form-action 'self'")
         for k, v in (extra_headers or {}).items():
             self.send_header(k, v)
         self.end_headers()
@@ -198,8 +210,12 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(200, self._rss_feed(),
                               "application/xml; charset=utf-8")
         if path == "/robots.txt":
-            return self._send(200, "User-agent: *\nAllow: /\n",
+            return self._send(200, "User-agent: *\nAllow: /\nSitemap: " +
+                               SITE_URL.rstrip("/") + "/sitemap.xml\n",
                                "text/plain; charset=utf-8")
+        if path == "/sitemap.xml":
+            return self._send(200, self._sitemap(),
+                               "application/xml; charset=utf-8")
 
         abs_path = self._safe_path(path)
         if abs_path is None:
@@ -303,8 +319,27 @@ class Handler(BaseHTTPRequestHandler):
                     pass
             out.append('      <description>' + xml_escape(action) + '</description>')
             out.append('    </item>')
-        out.append('  </channel>')
-        out.append('</rss>')
+        out.append("  </channel>")
+        out.append("</rss>")
+        return "\n".join(out) + "\n"
+
+    # ---- sitemap -------------------------------------------------------
+    def _sitemap(self):
+        base = SITE_URL.rstrip("/")
+        pages = [
+            ("/", "daily", "1.0"),
+            ("/play.html", "weekly", "0.6"),
+            ("/feed.xml", "weekly", "0.3"),
+        ]
+        out = ['<?xml version="1.0" encoding="utf-8"?>',
+               '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+        for url, freq, prio in pages:
+            out.append("  <url>")
+            out.append("    <loc>" + xml_escape(base + url) + "</loc>")
+            out.append("    <changefreq>" + freq + "</changefreq>")
+            out.append("    <priority>" + prio + "</priority>")
+            out.append("  </url>")
+        out.append("</urlset>")
         return "\n".join(out) + "\n"
 
     # ---- guestbook -----------------------------------------------------

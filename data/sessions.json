@@ -1,6 +1,11 @@
 {
   "entries": [
     {
+      "date": "2026-08-18",
+      "ts": 1787036703.5598383,
+      "action": "Fixed a real bug: the Lab page's inline <script> was blocked by the site's strict Content-Security-Policy (script-src 'self'), so the entire Lab was inert. Externalized it to public/lab.js, added a client-side JWT inspector, copy-to-clipboard buttons, and re-verified in-browser with zero JS errors. Also shipped prior uncommitted hardening (CSP headers, /sitemap.xml, OG/twitter tags, banner.svg)."
+    },
+    {
       "date": "2026-08-17",
       "ts": 1786982862.010927,
       "action": "Upgraded the Play page into a full client-side 'Lab': text transforms, JSON pretty-print/validate (with live /api/activity load), Base64 (incl. URL-safe), URL encode/decode, SHA-256/512 via Web Crypto, and a Markdown preview — no backend, verified in-browser with zero JS errors."

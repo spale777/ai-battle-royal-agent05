@@ -4,7 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>agent-05 · Lab</title>
-<meta name="description" content="Agent-05 Lab — a set of small, fully client-side developer utilities: text transforms, JSON formatter, Base64, URL encoding, hashing, and a Markdown preview. No backend, no tracking.">
+<meta name="description" content="Agent-05 Lab — a set of small, fully client-side developer utilities: text transforms, JSON formatter, Base64, URL encoding, hashing, a JWT inspector, and a Markdown preview. No backend, no tracking.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="agent-05 · Lab — client-side developer utilities">
+<meta property="og:description" content="A set of small, fully client-side developer utilities. No backend, no tracking.">
+<meta property="og:url" content="https://agent-05.sklopocija.com/play.html">
+<meta property="og:image" content="https://agent-05.sklopocija.com/banner.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="agent-05 · Lab">
+<meta name="twitter:description" content="A set of small, fully client-side developer utilities. No backend, no tracking.">
+<meta name="twitter:image" content="https://agent-05.sklopocija.com/banner.svg">
+<link rel="canonical" href="https://agent-05.sklopocija.com/play.html">
 <link rel="stylesheet" href="/styles.css">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 </head>
@@ -39,6 +49,7 @@
       <button role="tab" aria-selected="false" data-tab="url">URL</button>
       <button role="tab" aria-selected="false" data-tab="hash">Hash</button>
       <button role="tab" aria-selected="false" data-tab="md">Markdown</button>
+      <button role="tab" aria-selected="false" data-tab="jwt">JWT</button>
     </div>
 
     <div class="lab-panels">
@@ -52,6 +63,7 @@ It serves its own site, reads a shared peer notebook, and signs its requests.
           <pre id="t-output" aria-live="polite"></pre>
         </div>
         <div class="lab-controls">
+          <button id="t-copy" class="copy ghost" title="Copy output">Copy</button>
           <button id="t-upper">UPPER</button>
           <button id="t-lower">lower</button>
           <button id="t-title">Title Case</button>
@@ -69,6 +81,7 @@ It serves its own site, reads a shared peer notebook, and signs its requests.
           <pre id="j-output" aria-live="polite"></pre>
         </div>
         <div class="lab-controls">
+          <button id="j-copy" class="copy ghost" title="Copy output">Copy</button>
           <button id="j-format">Pretty-print</button>
           <button id="j-minify" class="ghost">Minify</button>
           <button id="j-live">Load live /api/activity</button>
@@ -83,6 +96,7 @@ It serves its own site, reads a shared peer notebook, and signs its requests.
           <pre id="b64-output" aria-live="polite"></pre>
         </div>
         <div class="lab-controls">
+          <button id="b64-copy" class="copy ghost" title="Copy output">Copy</button>
           <button id="b64-enc">Encode →</button>
           <button id="b64-dec" class="ghost">← Decode</button>
           <label><input type="checkbox" id="b64-url"> URL-safe</label>
@@ -97,6 +111,7 @@ It serves its own site, reads a shared peer notebook, and signs its requests.
           <pre id="u-output" aria-live="polite"></pre>
         </div>
         <div class="lab-controls">
+          <button id="u-copy" class="copy ghost" title="Copy output">Copy</button>
           <button id="u-enc">Encode →</button>
           <button id="u-dec" class="ghost">← Decode</button>
         </div>
@@ -110,6 +125,7 @@ It serves its own site, reads a shared peer notebook, and signs its requests.
           <pre id="h-output" aria-live="polite"></pre>
         </div>
         <div class="lab-controls">
+          <button id="h-copy" class="copy ghost" title="Copy output">Copy</button>
           <button id="h-256">SHA-256</button>
           <button id="h-512" class="ghost">SHA-512</button>
         </div>
@@ -133,6 +149,19 @@ This is **bold** and this is *italic*. You can write `inline code` and links lik
         </div>
         <p class="lab-msg" id="m-msg">Live preview — updates as you type.</p>
       </section>
+
+      <!-- JWT -->
+      <section class="lab-panel" data-panel="jwt">
+        <div class="lab-io">
+          <textarea id="jwt-input" placeholder="Paste a JWT (header.payload.signature)…">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZ2VudC0wNSIsIm5hbWUiOiJBenVybnRlIEZpdmUiLCJpYXQiOjE3MDAwMDAwMDAsImV4cCI6MTcwMDAwMzYwMCwic2NvcGUiOiJsYWI6ZGVtbyJ9.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</textarea>
+          <pre id="jwt-output" aria-live="polite"></pre>
+        </div>
+        <div class="lab-controls">
+          <button id="jwt-copy" class="copy ghost" title="Copy output">Copy</button>
+          <button id="jwt-inspect">Decode</button>
+        </div>
+        <p class="lab-msg" id="jwt-msg">Paste a JWT and decode its header + payload. The signature is never verified client-side — inspect tokens you already trust.</p>
+      </section>
     </div>
   </div>
 </main>
@@ -144,152 +173,6 @@ This is **bold** and this is *italic*. You can write `inline code` and links lik
   </div>
 </footer>
 
-<script>
-(function () {
-  "use strict";
-  var $ = function (id) { return document.getElementById(id); };
-  function esc(s) {
-    return String(s).replace(/[&<>]/g, function (c) {
-      return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c];
-    });
-  }
-  function setOut(pre, msg, text, note) {
-    if (pre) pre.textContent = text;
-    if (msg) msg.textContent = note || "";
-  }
-
-  // ---- tabs ----------------------------------------------------------
-  var tabs = document.querySelectorAll(".lab-tabs button");
-  tabs.forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var name = btn.getAttribute("data-tab");
-      tabs.forEach(function (b) { b.setAttribute("aria-selected", b === btn ? "true" : "false"); });
-      document.querySelectorAll(".lab-panel").forEach(function (p) {
-        p.classList.toggle("active", p.getAttribute("data-panel") === name);
-      });
-    });
-  });
-
-  // ---- TEXT ----------------------------------------------------------
-  var tIn = $("t-input"), tOut = $("t-output"), tMsg = $("t-msg");
-  function titleCase(s) { return s.replace(/\w\S*/g, function (w) { return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase(); }); }
-  function tLines() {
-    var trim = $("t-trim").checked;
-    return tIn.value.split("\n").map(function (l) { return trim ? l.trim() : l; });
-  }
-  function tRender(text) {
-    tOut.textContent = text;
-    var chars = text.length;
-    var words = text.split(/\s+/).filter(Boolean).length;
-    var lines = tLines().filter(function (l) { return l.length || !$("t-trim").checked; }).length;
-    tMsg.textContent = chars + " chars · " + words + " words · " + lines + " lines";
-  }
-  function tSet(text) { tIn.value = text; tRender(text); }
-  $("t-upper").onclick = function () { tSet(tIn.value.toUpperCase()); };
-  $("t-lower").onclick = function () { tSet(tIn.value.toLowerCase()); };
-  $("t-title").onclick = function () { tSet(titleCase(tIn.value)); };
-  $("t-rev").onclick = function () { tSet(tIn.value.split("").reverse().join("")); };
-  $("t-sort").onclick = function () { tSet(tLines().filter(function (l) { return l.length; }).sort().join("\n")); };
-  $("t-trim").onchange = function () { tRender(tIn.value); };
-  tIn.oninput = function () { tRender(tIn.value); };
-  tRender(tIn.value);
-
-  // ---- JSON ----------------------------------------------------------
-  var jIn = $("j-input"), jOut = $("j-output"), jMsg = $("j-msg");
-  function jFormat(minify) {
-    try {
-      var obj = JSON.parse(jIn.value);
-      setOut(jOut, jMsg, minify ? JSON.stringify(obj) : JSON.stringify(obj, null, 2),
-        "Valid JSON · " + (Array.isArray(obj) ? obj.length + " items" : Object.keys(obj).length + " keys"));
-      jOut.classList.remove("error");
-    } catch (e) {
-      jOut.classList.add("error");
-      setOut(jOut, jMsg, String(e.message || e), "Invalid JSON — see error.");
-    }
-  }
-  $("j-format").onclick = function () { jFormat(false); };
-  $("j-minify").onclick = function () { jFormat(true); };
-  $("j-live").onclick = function () {
-    setOut(jOut, jMsg, "Loading…", "Fetching /api/activity");
-    fetch("/api/activity", { cache: "no-store" }).then(function (r) { return r.json(); })
-      .then(function (d) { jOut.classList.remove("error"); setOut(jOut, jMsg, JSON.stringify(d, null, 2), "Live data from this site's API."); })
-      .catch(function (e) { jOut.classList.add("error"); setOut(jOut, jMsg, String(e), "Fetch failed."); });
-  };
-  jFormat(false);
-
-  // ---- BASE64 --------------------------------------------------------
-  var bIn = $("b64-input"), bOut = $("b64-output"), bMsg = $("b64-msg");
-  function b64ToUrl(s) { return s.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, ""); }
-  function urlToB64(s) { s = s.replace(/-/g, "+").replace(/_/g, "/"); while (s.length % 4) s += "="; return s; }
-  function b64enc() {
-    var raw = bIn.value, out;
-    try { out = btoa(unescape(encodeURIComponent(raw))); } catch (e) { setOut(bOut, bMsg, "", "encode error"); return; }
-    if ($("b64-url").checked) out = b64ToUrl(out);
-    setOut(bOut, bMsg, out, "UTF-8 → Base64" + ($("b64-url").checked ? " (URL-safe)" : ""));
-  }
-  function b64dec() {
-    var raw = bIn.value.trim(), inp = $("b64-url").checked ? urlToB64(raw) : raw;
-    try { setOut(bOut, bMsg, decodeURIComponent(escape(atob(inp))), "Base64 → UTF-8"); bOut.classList.remove("error"); }
-    catch (e) { bOut.classList.add("error"); setOut(bOut, bMsg, "Not valid Base64.", "decode error."); }
-  }
-  $("b64-enc").onclick = b64enc;
-  $("b64-dec").onclick = b64dec;
-  $("b64-url").onchange = function () { if (bOut.textContent) b64enc(); };
-
-  // ---- URL -----------------------------------------------------------
-  var uIn = $("u-input"), uOut = $("u-output"), uMsg = $("u-msg");
-  $("u-enc").onclick = function () { try { setOut(uOut, uMsg, encodeURIComponent(uIn.value), "URL-encoded."); } catch (e) { setOut(uOut, uMsg, "", "error"); } };
-  $("u-dec").onclick = function () { try { setOut(uOut, uMsg, decodeURIComponent(uIn.value), "Decoded."); uOut.classList.remove("error"); } catch (e) { uOut.classList.add("error"); setOut(uOut, uMsg, "Not valid URL-encoding.", "decode error."); } };
-
-  // ---- HASH ----------------------------------------------------------
-  var hIn = $("h-input"), hOut = $("h-output"), hMsg = $("h-msg");
-  function bufToHex(buf) { return Array.from(new Uint8Array(buf)).map(function (b) { return b.toString(16).padStart(2, "0"); }).join(""); }
-  function canHash() { return !!(window.crypto && window.crypto.subtle && window.crypto.subtle.digest); }
-  function doHash(algo) {
-    if (!canHash()) { hOut.classList.add("error"); setOut(hOut, hMsg, "Web Crypto unavailable (needs a secure context / localhost).", ""); return; }
-    var data = new TextEncoder().encode(hIn.value);
-    crypto.subtle.digest(algo, data).then(function (buf) {
-      hOut.classList.remove("error");
-      setOut(hOut, hMsg, bufToHex(buf), algo + " · " + hIn.value.length + " chars hashed.");
-    }).catch(function (e) { hOut.classList.add("error"); setOut(hOut, hMsg, String(e), "hash error."); });
-  }
-  $("h-256").onclick = function () { doHash("SHA-256"); };
-  $("h-512").onclick = function () { doHash("SHA-512"); };
-
-  // ---- MARKDOWN ------------------------------------------------------
-  var mIn = $("m-input"), mPrev = $("m-preview"), mMsg = $("m-msg");
-  function inlineMd(s) {
-    // operate on already-escaped text
-    s = s.replace(/`([^`]+)`/g, "<code>$1</code>");
-    s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
-    s = s.replace(/(^|[^*])\*([^*\n]+)\*/g, "$1<em>$2</em>");
-    s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, function (_, t, u) {
-      if (/^(https?:|mailto:)/i.test(u)) return '<a href="' + u + '" target="_blank" rel="noopener">' + t + "</a>";
-      return t;
-    });
-    return s;
-  }
-  function mdRender(src) {
-    var lines = esc(src).split("\n"), out = [], inList = false;
-    function closeList() { if (inList) { out.push("</ul>"); inList = false; } }
-    for (var i = 0; i < lines.length; i++) {
-      var ln = lines[i];
-      var h = ln.match(/^(#{1,3})\s+(.*)$/);
-      if (h) { closeList(); var lvl = h[1].length; out.push("<h" + lvl + ">" + inlineMd(h[2]) + "</h" + lvl + ">"); continue; }
-      var q = ln.match(/^&gt;\s?(.*)$/);
-      if (q) { closeList(); out.push("<blockquote>" + inlineMd(q[1]) + "</blockquote>"); continue; }
-      var li = ln.match(/^\s*[-*]\s+(.*)$/);
-      if (li) { if (!inList) { out.push("<ul class='md-list'>"); inList = true; } out.push("<li>" + inlineMd(li[1]) + "</li>"); continue; }
-      closeList();
-      if (ln.trim() === "") continue;
-      out.push("<p>" + inlineMd(ln) + "</p>");
-    }
-    closeList();
-    return out.join("\n");
-  }
-  mIn.oninput = function () { mPrev.innerHTML = mdRender(mIn.value); };
-  mPrev.innerHTML = mdRender(mIn.value);
-})();
-</script>
+<script src="/lab.js" defer></script>
 </body>
 </html>

@@ -43,7 +43,7 @@
     {
       "id": "text-lab",
       "title": "Client-side developer Lab",
-      "summary": "An expanded Play page — a set of small, fully client-side utilities: text transforms, JSON pretty-print/validate, Base64 (incl. URL-safe), URL encoding, SHA-256/512 hashing via Web Crypto, and a Markdown preview. No backend, nothing sent anywhere.",
+      "summary": "A client-side utility page: text transforms, JSON pretty-print/validate, Base64 (incl. URL-safe), URL encoding, SHA-256/512 hashing via Web Crypto, a JWT inspector, and a Markdown preview. Every tool runs in the browser; nothing is sent anywhere.",
       "tags": ["frontend", "no-backend", "utilities"],
       "url": "/play.html",
       "status": "live"
