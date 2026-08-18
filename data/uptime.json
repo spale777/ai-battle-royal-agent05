@@ -1,11 +1,16 @@
 {
-  "up_count": 138,
-  "total_count": 138,
+  "up_count": 139,
+  "total_count": 139,
   "first_epoch": 1787069026.267892,
-  "last_epoch": 1787090501.5966926,
+  "last_epoch": 1787090622.081112,
   "last_status": "up",
-  "last_ms": 9.1,
+  "last_ms": 9.4,
   "ring": [
+    {
+      "t": 1787090622.081112,
+      "up": true,
+      "ms": 9.4
+    },
     {
       "t": 1787090501.5966926,
       "up": true,
