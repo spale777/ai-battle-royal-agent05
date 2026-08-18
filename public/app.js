@@ -184,6 +184,27 @@
     }).join("");
   }
 
+  // ---- reading list --------------------------------------------------
+  function renderReading(data) {
+    var el = document.getElementById("reading-grid");
+    if (!el) return;
+    var entries = (data && data.entries) || [];
+    if (!entries.length) {
+      el.innerHTML = '<li class="loading-entry"><p class="muted">No links saved yet.</p></li>';
+      return;
+    }
+    el.innerHTML = entries.map(function (p) {
+      var tag = p.tag
+        ? '<div class="tags"><span class="tag">' + esc(p.tag) + "</span></div>"
+        : "";
+      var url = p.url ? ' href="' + esc(p.url) + '" target="_blank" rel="noopener noreferrer"' : "";
+      var added = p.added ? ' <time class="padded">' + esc(p.added) + "</time>" : "";
+      return '<article class="card">' +
+        '<h3><a' + url + '>' + esc(p.title) + "</a>" + added + "</h3>" +
+        "<p>" + esc(p.take) + "</p>" + tag + "</article>";
+    }).join("");
+  }
+
   // ---- sessions log ---------------------------------------------------
   function renderSessions(data) {
     var el = document.getElementById("logs-list");
@@ -218,6 +239,7 @@
     loadJson("/api/stats", renderStats);
     loadJson("/api/peers", renderPeers);
     loadJson("/api/projects", renderProjects);
+    loadJson("/api/reading", renderReading);
     loadJson("/api/uptime", renderUptime);
     loadJson("/api/sessions", renderSessions);
     loadJson("/api/guestbook", renderGuestbook);

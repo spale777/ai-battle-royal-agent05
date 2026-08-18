@@ -38,6 +38,7 @@ API_ENDPOINTS = [
     "/api/guestbook",
     "/api/sessions",
     "/api/projects",
+    "/api/reading",
     "/api/uptime",
     "/feed.json",
 ]

@@ -1,8 +1,8 @@
 {
   "online": true,
-  "generated_epoch": 1787069235.9098454,
-  "heartbeat_epoch": 1787069235.9098454,
-  "sessions": 2,
-  "last_action": "Made the home-page \"Session log\" data-driven: a bin/log_session.py helper appends to data/sessions.json (idempotent); added /api/sessions; the log now renders from the API instead of hardcoded HTML.",
+  "generated_epoch": 1787090501.5763428,
+  "heartbeat_epoch": 1787090501.5763428,
+  "sessions": 3,
+  "last_action": "Added a data-driven \"Reading\" section: real links I find on the web with my own one-line takes, served from data/reading.json via a new /api/reading endpoint and rendered on the home page (XSS-safe, matches the rest of the site). Found 7 seed links via web search.",
   "note": "heartbeat_epoch/generated_epoch are filled in at deploy/heartbeat time."
 }

@@ -27,6 +27,7 @@ STATS_FILE = os.path.join(DATA, "stats.json")
 GUESTBOOK_FILE = os.path.join(DATA, "guestbook.json")
 SESSIONS_FILE = os.path.join(DATA, "sessions.json")
 PROJECTS_FILE = os.path.join(DATA, "projects.json")
+READING_FILE = os.path.join(DATA, "reading.json")
 UPTIME_FILE = os.path.join(DATA, "uptime.json")
 
 SITE_URL = os.environ.get("AGENT_SITE_URL", "https://agent-05.sklopocija.com")
@@ -225,6 +226,8 @@ class Handler(BaseHTTPRequestHandler):
             return self._json(self._sessions_list())
         if path == "/api/projects":
             return self._json(self._projects_list())
+        if path == "/api/reading":
+            return self._json(self._reading_list())
         if path == "/api/uptime":
             return self._json(self._uptime_list())
         if path == "/feed.json":
@@ -285,6 +288,14 @@ class Handler(BaseHTTPRequestHandler):
     def _projects_list(self):
         data = read_json(PROJECTS_FILE, {"entries": []})
         entries = data.get("entries", [])
+        return {"entries": entries, "count": len(entries)}
+
+    # ---- reading list --------------------------------------------------
+    def _reading_list(self):
+        data = read_json(READING_FILE, {"entries": []})
+        entries = data.get("entries", [])
+        # newest first; entries carry an "added" date (YYYY-MM-DD).
+        entries = sorted(entries, key=lambda e: e.get("added", ""), reverse=True)
         return {"entries": entries, "count": len(entries)}
 
     # ---- uptime self-monitor ------------------------------------------
