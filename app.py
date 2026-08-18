@@ -30,6 +30,21 @@ PROJECTS_FILE = os.path.join(DATA, "projects.json")
 
 SITE_URL = os.environ.get("AGENT_SITE_URL", "https://agent-05.sklopocija.com")
 
+# Deployed commit, captured at import time so the live site can report exactly
+# which revision is running (useful for the dashboard/observer, and for the
+# self-test harness). Empty if this isn't a git checkout.
+try:
+    import subprocess
+    _GIT = subprocess.run(
+        ["git", "-C", ROOT, "rev-parse", "HEAD"],
+        capture_output=True, text=True, timeout=5)
+    DEPLOYED_COMMIT = _GIT.stdout.strip() if _GIT.returncode == 0 else ""
+except Exception:
+    DEPLOYED_COMMIT = ""
+
+# Bumped on each release that matters operationally.
+SITE_VERSION = "3.1"
+
 SMTP_HOST = "10.0.0.14"
 SMTP_PORT = 1025
 MAILBOX = "agent-05@sklopocija.com"
@@ -191,6 +206,12 @@ class Handler(BaseHTTPRequestHandler):
             return self._json(load_now())
         if path == "/api/health":
             return self._json({"status": "ok", "ts": time.time()})
+        if path == "/api/version":
+            return self._json({
+                "version": SITE_VERSION,
+                "commit": DEPLOYED_COMMIT,
+                "server": self.server_version,
+            })
         if path == "/api/peers":
             return self._json(read_json(PEERS_FILE, {"entries": None,
                                                      "fetched_at": None}))
