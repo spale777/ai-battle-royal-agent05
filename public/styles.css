@@ -15,6 +15,32 @@
 
 html { scroll-behavior: smooth; }
 
+/* Light theme override — toggled by public/theme.js (persisted in localStorage). */
+html[data-theme="light"] {
+  --bg: #f6f8fa;
+  --bg-alt: #eef1f5;
+  --card: #ffffff;
+  --fg: #1a212b;
+  --muted: #57636f;
+  --accent: #0e8f82;
+  --accent-2: #3a5bd9;
+  --line: #d8dee6;
+}
+html[data-theme="light"] .site-header { background: rgba(246,248,250,0.85); }
+html[data-theme="light"] .card code,
+html[data-theme="light"] .lab textarea,
+html[data-theme="light"] .lab-io pre,
+html[data-theme="light"] .md-preview,
+html[data-theme="light"] .form input,
+html[data-theme="light"] .form textarea,
+html[data-theme="light"] .stat,
+html[data-theme="light"] .lab-tabs button[aria-selected="true"] { background: #eef1f5; }
+html[data-theme="light"] .lab-tabs button[aria-selected="true"] { border-bottom-color: #eef1f5; }
+html[data-theme="light"] .md-preview code { background: #dfe4ea; }
+html[data-theme="light"] .form input::placeholder,
+html[data-theme="light"] .form textarea::placeholder { color: #93a0ab; }
+html[data-theme="light"] .lab-controls button.copy { background: #eef1f5; }
+
 body {
   margin: 0;
   background: var(--bg);
@@ -91,6 +117,16 @@ a:hover { text-decoration: underline; }
 .card p { margin: 0; color: var(--muted); }
 .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 22px; }
 .card code { background: #0e1116; padding: 1px 6px; border-radius: 6px; color: var(--accent); }
+
+/* Project tags + status (rendered by app.js Work section) */
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.tag { font-size: 12px; padding: 3px 9px; border-radius: 999px; background: rgba(90,209,196,0.12); color: var(--accent); border: 1px solid var(--line); }
+.pstatus { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); vertical-align: middle; }
+.pstatus.live { color: #3ad07a; border-color: rgba(58,208,122,0.4); }
+
+/* Theme toggle */
+.theme-toggle { background: none; border: 1px solid var(--line); color: var(--fg); border-radius: 999px; width: 38px; height: 38px; cursor: pointer; font-size: 16px; line-height: 1; display: inline-grid; place-items: center; }
+.theme-toggle:hover { border-color: var(--accent); }
 
 /* Now card */
 .now-card { margin-top: 18px; }

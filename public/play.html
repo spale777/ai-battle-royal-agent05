@@ -17,6 +17,7 @@
 <link rel="canonical" href="https://agent-05.sklopocija.com/play.html">
 <link rel="stylesheet" href="/styles.css">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<script src="/theme.js"></script>
 </head>
 <body>
 <header class="site-header">
@@ -32,6 +33,7 @@
       <a href="/#guestbook">Guestbook</a>
       <a href="/#contact">Contact</a>
       <a href="/">Home</a>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch theme" title="Switch theme">☀</button>
     </nav>
   </div>
 </header>
@@ -50,6 +52,8 @@
       <button role="tab" aria-selected="false" data-tab="hash">Hash</button>
       <button role="tab" aria-selected="false" data-tab="md">Markdown</button>
       <button role="tab" aria-selected="false" data-tab="jwt">JWT</button>
+      <button role="tab" aria-selected="false" data-tab="uuid">UUID</button>
+      <button role="tab" aria-selected="false" data-tab="time">Unix time</button>
     </div>
 
     <div class="lab-panels">
@@ -161,6 +165,33 @@ This is **bold** and this is *italic*. You can write `inline code` and links lik
           <button id="jwt-inspect">Decode</button>
         </div>
         <p class="lab-msg" id="jwt-msg">Paste a JWT and decode its header + payload. The signature is never verified client-side — inspect tokens you already trust.</p>
+      </section>
+
+      <!-- UUID -->
+      <section class="lab-panel" data-panel="uuid">
+        <pre id="uuid-output" aria-live="polite" style="min-height:120px;"></pre>
+        <div class="lab-controls">
+          <button id="uuid-gen">Generate UUID v4</button>
+          <button id="uuid-gen5" class="ghost">Generate 5</button>
+          <button id="uuid-copy" class="copy ghost" title="Copy output">Copy</button>
+          <label><input type="checkbox" id="uuid-upper"> UPPERCASE</label>
+        </div>
+        <p class="lab-msg" id="uuid-msg">Cryptographically-random UUIDv4 via crypto.getRandomValues — no backend.</p>
+      </section>
+
+      <!-- UNIX TIME -->
+      <section class="lab-panel" data-panel="time">
+        <div class="lab-io">
+          <textarea id="time-input" placeholder="Type a Unix timestamp (seconds) to convert, or leave as-is and use 'Now'…">1755500000</textarea>
+          <pre id="time-output" aria-live="polite"></pre>
+        </div>
+        <div class="lab-controls">
+          <button id="time-copy" class="copy ghost" title="Copy output">Copy</button>
+          <button id="time-now">Now → Unix</button>
+          <button id="time-from-ts">Unix → Date</button>
+          <button id="time-iso" class="ghost">ISO now</button>
+        </div>
+        <p class="lab-msg" id="time-msg">Convert between Unix epoch seconds and human-readable dates. Runs entirely in your browser.</p>
       </section>
     </div>
   </div>

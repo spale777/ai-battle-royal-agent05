@@ -302,4 +302,92 @@
     }
     jwtInspect();
   }
+
+  // ---- UUID ----------------------------------------------------------
+  var uuidOut = $("uuid-output"), uuidMsg = $("uuid-msg");
+  function genUuid() {
+    // RFC 4122 v4 via crypto.getRandomValues when available.
+    if (window.crypto && window.crypto.getRandomValues) {
+      var b = new Uint8Array(16);
+      window.crypto.getRandomValues(b);
+      b[6] = (b[6] & 0x0f) | 0x40;
+      b[8] = (b[8] & 0x3f) | 0x80;
+      var h = Array.from(b, function (x) { return x.toString(16).padStart(2, "0"); });
+      return h.slice(0, 4).join("") + "-" + h.slice(4, 6).join("") + "-" +
+             h.slice(6, 8).join("") + "-" + h.slice(8, 10).join("") + "-" +
+             h.slice(10, 16).join("");
+    }
+    // Fallback (older/non-secure contexts): Math.random — still unique enough for local use.
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+      var r = Math.random() * 16 | 0;
+      return (c === "x" ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+  }
+  function uuidShow() {
+    var up = $("uuid-upper") && $("uuid-upper").checked;
+    var text = uuidOut.textContent;
+    if (up) text = text.toUpperCase();
+    uuidOut.textContent = text;
+  }
+  function uuidGen(n) {
+    var list = [];
+    for (var i = 0; i < n; i++) list.push(genUuid());
+    uuidOut.textContent = list.join("\n");
+    uuidMsg.textContent = (n === 1 ? "One UUID" : n + " UUIDs") + " generated (v4, random).";
+    uuidShow();
+  }
+  if ($("uuid-gen")) {
+    $("uuid-gen").onclick = function () { uuidGen(1); };
+    $("uuid-gen5").onclick = function () { uuidGen(5); };
+    if ($("uuid-copy")) $("uuid-copy").onclick = function () { copyText(uuidOut.textContent, $("uuid-copy")); };
+    if ($("uuid-upper")) $("uuid-upper").onchange = uuidShow;
+    uuidGen(1);
+  }
+
+  // ---- UNIX TIME -----------------------------------------------------
+  var tIn = $("time-input"), tOut = $("time-output"), tMsg = $("time-msg");
+  function pad(n) { return String(n).padStart(2, "0"); }
+  function fmtDate(d) {
+    return d.getUTCFullYear() + "-" + pad(d.getUTCMonth() + 1) + "-" + pad(d.getUTCDate()) +
+      " " + pad(d.getUTCHours()) + ":" + pad(d.getUTCMinutes()) + ":" + pad(d.getUTCSeconds()) + " UTC";
+  }
+  function timeNow() {
+    var secs = Math.floor(Date.now() / 1000);
+    tIn.value = String(secs);
+    tOut.textContent = String(secs) + "  (" + fmtDate(new Date(secs * 1000)) + ")";
+    tMsg.textContent = "Current Unix epoch (seconds).";
+  }
+  function timeFromTs() {
+    var raw = (tIn.value || "").trim();
+    var secs = Number(raw);
+    if (!raw || !Number.isFinite(secs)) {
+      tOut.classList.add("error");
+      tOut.textContent = "Enter a numeric Unix timestamp (seconds).";
+      tMsg.textContent = "Not a number.";
+      return;
+    }
+    // Heuristic: accept ms timestamps (10+ digits) by converting.
+    if (raw.length >= 11) secs = Math.floor(secs / 1000);
+    var d = new Date(secs * 1000);
+    if (isNaN(d.getTime())) {
+      tOut.classList.add("error");
+      tOut.textContent = "Timestamp out of range.";
+      tMsg.textContent = "Out of range.";
+      return;
+    }
+    tOut.classList.remove("error");
+    tOut.textContent = fmtDate(d);
+    tMsg.textContent = "Converted from " + secs + " (seconds).";
+  }
+  function timeIso() {
+    tOut.textContent = new Date().toISOString();
+    tMsg.textContent = "Current UTC ISO-8601 timestamp.";
+  }
+  if ($("time-now")) {
+    $("time-now").onclick = timeNow;
+    $("time-from-ts").onclick = timeFromTs;
+    $("time-iso").onclick = timeIso;
+    if ($("time-copy")) $("time-copy").onclick = function () { copyText(tOut.textContent, $("time-copy")); };
+    timeFromTs();
+  }
 })();

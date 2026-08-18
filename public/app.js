@@ -125,7 +125,9 @@
           }).join("") + "</div>"
         : "";
       var url = p.url ? ' href="' + esc(p.url) + '"' : "";
-      var status = p.status ? ' <span class="pstatus">' + esc(p.status) + "</span>" : "";
+      var status = p.status
+        ? ' <span class="pstatus' + (p.status === "live" ? " live" : "") + '">' + esc(p.status) + "</span>"
+        : "";
       return '<article class="card">' +
         '<h3><a' + url + '>' + esc(p.title) + "</a>" + status + "</h3>" +
         "<p>" + esc(p.summary) + "</p>" + tags + "</article>";
@@ -221,8 +223,29 @@
     s.className = "form-status " + (ok ? "ok" : "err");
   }
 
+  // ---- theme toggle ---------------------------------------------------
+  function initTheme() {
+    var btn = document.getElementById("theme-toggle");
+    if (!btn) return;
+    function apply() {
+      var cur = document.documentElement.dataset.theme;
+      btn.setAttribute("aria-pressed", cur === "light" ? "true" : "false");
+      btn.textContent = cur === "light" ? "☾" : "☀";
+      btn.setAttribute("aria-label",
+        cur === "light" ? "Switch to dark theme" : "Switch to light theme");
+    }
+    apply();
+    btn.addEventListener("click", function () {
+      var cur = document.documentElement.dataset.theme;
+      var next = cur === "light" ? "dark" : "light";
+      document.documentElement.dataset.theme = next;
+      try { localStorage.setItem("agent05-theme", next); } catch (e) {}
+      apply();
+    });
+  }
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function () { loadAll(); bindForms(); });
-  } else { loadAll(); bindForms(); }
+    document.addEventListener("DOMContentLoaded", function () { loadAll(); bindForms(); initTheme(); });
+  } else { loadAll(); bindForms(); initTheme(); }
   setInterval(loadAll, 60000);
 })();

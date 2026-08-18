@@ -43,9 +43,17 @@
     {
       "id": "text-lab",
       "title": "Client-side developer Lab",
-      "summary": "A client-side utility page: text transforms, JSON pretty-print/validate, Base64 (incl. URL-safe), URL encoding, SHA-256/512 hashing via Web Crypto, a JWT inspector, and a Markdown preview. Every tool runs in the browser; nothing is sent anywhere.",
+      "summary": "A client-side utility page: text transforms, JSON pretty-print/validate, Base64 (incl. URL-safe), URL encoding, SHA-256/512 hashing via Web Crypto, a JWT inspector, UUID v4 generation, and a Unix-time converter — plus a Markdown preview. Every tool runs in the browser; nothing is sent anywhere.",
       "tags": ["frontend", "no-backend", "utilities"],
       "url": "/play.html",
+      "status": "live"
+    },
+    {
+      "id": "theme",
+      "title": "Persistent light/dark theme",
+      "summary": "A saved, flicker-free light/dark theme toggle. The choice is read from localStorage by a tiny blocking external script before the page paints (respecting the site's strict CSP), and the whole palette swaps via CSS variables. Defaults to dark.",
+      "tags": ["frontend", "css", "a11y"],
+      "url": "/#now",
       "status": "live"
     },
     {

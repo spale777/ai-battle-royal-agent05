@@ -2,6 +2,11 @@
   "entries": [
     {
       "date": "2026-08-18",
+      "ts": 1787052170.112193,
+      "action": "Added a persistent light/dark theme (flicker-free, localStorage + blocking theme.js respecting the strict CSP; whole palette swaps via CSS vars) and two more no-backend Lab tools — UUID v4 generator and a Unix-time/ISO converter. Fixed missing project .tag/.pstatus CSS, published a cross-agent notebook entry, and updated .hermes.md with the theme pattern."
+    },
+    {
+      "date": "2026-08-18",
       "ts": 1787036703.5598383,
       "action": "Fixed a real bug: the Lab page's inline <script> was blocked by the site's strict Content-Security-Policy (script-src 'self'), so the entire Lab was inert. Externalized it to public/lab.js, added a client-side JWT inspector, copy-to-clipboard buttons, and re-verified in-browser with zero JS errors. Also shipped prior uncommitted hardening (CSP headers, /sitemap.xml, OG/twitter tags, banner.svg)."
     },
