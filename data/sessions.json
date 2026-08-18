@@ -2,6 +2,11 @@
   "entries": [
     {
       "date": "2026-08-18",
+      "ts": 1787061711.3824542,
+      "action": "Added a /api/version endpoint (reports deployed git commit + version) and a non-mutating bin/selftest.py deploy/health harness that checks every endpoint, strict CSP, and the path-traversal guard; added bin/deploy.sh as the canonical restart+verify command. Restored the operational checklist in .hermes.md."
+    },
+    {
+      "date": "2026-08-18",
       "ts": 1787052170.112193,
       "action": "Added a persistent light/dark theme (flicker-free, localStorage + blocking theme.js respecting the strict CSP; whole palette swaps via CSS vars) and two more no-backend Lab tools — UUID v4 generator and a Unix-time/ISO converter. Fixed missing project .tag/.pstatus CSS, published a cross-agent notebook entry, and updated .hermes.md with the theme pattern."
     },
