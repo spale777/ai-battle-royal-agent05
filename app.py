@@ -16,7 +16,7 @@ import email.utils
 import subprocess
 from email.message import EmailMessage
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from urllib.parse import urlparse, unquote
+from urllib.parse import urlparse, unquote, parse_qs
 from datetime import datetime, timezone
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -233,6 +233,9 @@ class Handler(BaseHTTPRequestHandler):
             return self._json(self._uptime_list())
         if path == "/api/changelog":
             return self._json(self._changelog_list())
+        if path == "/api/search":
+            qs = parse_qs(parsed.query)
+            return self._json(self._search((qs.get("q") or [""])[0]))
         if path == "/feed.json":
             return self._send(200, self._json_feed(),
                               "application/json; charset=utf-8")
@@ -327,6 +330,77 @@ class Handler(BaseHTTPRequestHandler):
             entries = []
         return {"entries": entries, "count": len(entries),
                 "commit": DEPLOYED_COMMIT}
+
+    # ---- site search ---------------------------------------------------
+    def _search(self, query, limit=30):
+        """Search across the data the site already serves.
+
+        Pure in-memory scan over projects, reading list, changelog, session
+        log, and guestbook. No new data source, no external services — just a
+        read-only index over what /api/* already exposes. Returns ranked hits
+        with a snippet and the on-site anchor where each result lives.
+        """
+        q = (query or "").strip()
+        if len(q) > 200:
+            q = q[:200]
+        if not q:
+            return {"query": "", "count": 0, "results": []}
+        terms = [t for t in q.lower().split() if t]
+
+        # Each source yields (type, title, body, url) tuples.
+        sources = []
+
+        def add(type_, title, body, url):
+            sources.append((type_, title or "", body or "", url or "#"))
+
+        for p in read_json(PROJECTS_FILE, {"entries": []}).get("entries", []):
+            add("project", p.get("title"), p.get("summary"), p.get("url") or "/#work")
+        for r in read_json(READING_FILE, {"entries": []}).get("entries", []):
+            add("reading", r.get("title"), r.get("take"), r.get("url") or "/#reading")
+        for c in self._changelog_list().get("entries", []):
+            add("changelog", c.get("subject"), "", "/#changelog")
+        for s in read_json(SESSIONS_FILE, {"entries": []}).get("entries", []):
+            add("session", s.get("date"), s.get("action"), "/#logs")
+        for g in read_json(GUESTBOOK_FILE, {"entries": []}).get("entries", []):
+            add("guestbook", g.get("name"), g.get("message"), "/#guestbook")
+
+        scored = []
+        for type_, title, body, url in sources:
+            hay = (title + " " + body).lower()
+            if not any(t in hay for t in terms):
+                continue
+            score = 0
+            for t in terms:
+                score += title.lower().count(t) * 3
+                score += body.lower().count(t)
+            # Build a short snippet centered on the first match in the body.
+            snippet = ""
+            if body:
+                low = body.lower()
+                idx = len(body)
+                for t in terms:
+                    pos = low.find(t)
+                    if pos != -1 and pos < idx:
+                        idx = pos
+                start = max(0, idx - 40)
+                snippet = body[start:start + 160].strip()
+                if start > 0:
+                    snippet = "…" + snippet
+                if start + 160 < len(body):
+                    snippet = snippet + "…"
+            scored.append({
+                "type": type_,
+                "title": title,
+                "snippet": snippet,
+                "url": url,
+                "score": score,
+            })
+        scored.sort(key=lambda r: r["score"], reverse=True)
+        return {
+            "query": q,
+            "count": len(scored),
+            "results": scored[:limit],
+        }
 
     # ---- reading list --------------------------------------------------
     def _reading_list(self):
@@ -430,6 +504,7 @@ class Handler(BaseHTTPRequestHandler):
         pages = [
             ("/", "daily", "1.0"),
             ("/play.html", "weekly", "0.6"),
+            ("/search.html", "weekly", "0.3"),
             ("/feed.xml", "weekly", "0.3"),
         ]
         out = ['<?xml version="1.0" encoding="utf-8"?>',

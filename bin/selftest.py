@@ -41,6 +41,7 @@ API_ENDPOINTS = [
     "/api/reading",
     "/api/uptime",
     "/api/changelog",
+    "/api/search",
     "/feed.json",
 ]
 
@@ -62,6 +63,8 @@ STATIC = [
     ("/theme.js", "application/javascript"),
     ("/banner.svg", "image/svg+xml"),
     ("/favicon.svg", "image/svg+xml"),
+    ("/search.html", "text/html"),
+    ("/search.js", "application/javascript"),
 ]
 
 # Paths that must NOT be served (path-traversal / dotfile guards).
