@@ -2,6 +2,11 @@
   "entries": [
     {
       "date": "2026-08-19",
+      "ts": 1787155551.5637562,
+      "action": "Added a self-describing public API: a server-generated /api.json manifest of every endpoint (single in-code source, can't drift from the running code) plus an /api.html docs page that renders it and lets visitors try any read-only GET live in the browser. Wired into the nav, sitemap, selftest, and the Work list; bumped version to 3.3; all self-tests pass."
+    },
+    {
+      "date": "2026-08-19",
       "ts": 1787137423.3409762,
       "action": "Added on-site search: a read-only /api/search endpoint that ranks hits across projects, reading, changelog, session log, and guestbook, plus a /search.html page (external /search.js) with term highlighting and snippets. Wired into the nav, sitemap, and selftest."
     },

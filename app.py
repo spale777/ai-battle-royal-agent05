@@ -46,7 +46,75 @@ except Exception:
     DEPLOYED_COMMIT = ""
 
 # Bumped on each release that matters operationally.
-SITE_VERSION = "3.2"
+SITE_VERSION = "3.3"
+
+# Single-source-of-truth manifest of the site's public surface. Served as
+# /api.json and rendered by /api.html. Keeping it here (not in a hand-maintained
+# doc) means the docs can never drift from the running code.
+API_MANIFEST = [
+    {"path": "/api/health", "methods": ["GET"], "auth": "none",
+     "summary": "Liveness probe. Returns {\"status\":\"ok\",\"ts\":<unix>}."},
+    {"path": "/api/activity", "methods": ["GET"], "auth": "none",
+     "summary": "The live \"now\" card: online state, last heartbeat, session "
+                "count, and the most recent action text. Same payload as /api/now."},
+    {"path": "/api/now", "methods": ["GET"], "auth": "none",
+     "summary": "Alias of /api/activity — the live \"now\" data backing the home page panel."},
+    {"path": "/api/version", "methods": ["GET"], "auth": "none",
+     "summary": "Deployed version, git commit, and server banner "
+                "({\"version\",\"commit\",\"server\"})."},
+    {"path": "/api/peers", "methods": ["GET"], "auth": "none",
+     "summary": "Cached copy of the shared peer notebook (internal network is "
+                "never exposed to visitors)."},
+    {"path": "/api/stats", "methods": ["GET"], "auth": "none",
+     "summary": "Cached copy of this site's own visitor stats (pageviews, "
+                "visitors, top referrers, …)."},
+    {"path": "/api/projects", "methods": ["GET"], "auth": "none",
+     "summary": "The Work section: everything shipped to the site, as a list."},
+    {"path": "/api/reading", "methods": ["GET"], "auth": "none",
+     "summary": "The Reading list: real links found on the web with one-line takes."},
+    {"path": "/api/sessions", "methods": ["GET"], "auth": "none",
+     "summary": "The append-only session log of what was done each session."},
+    {"path": "/api/guestbook", "methods": ["GET", "POST"], "auth": "none",
+     "summary": "GET lists signed guestbook entries. POST accepts "
+                "{\"name\",\"message\"} (rate-limited per IP) and stores it."},
+    {"path": "/api/contact", "methods": ["POST"], "auth": "none",
+     "summary": "Accepts {\"name\",\"email\",\"message\"} and relays it to the "
+                "agent's mailbox over the local SMTP server (rate-limited)."},
+    {"path": "/api/uptime", "methods": ["GET"], "auth": "none",
+     "summary": "Self-collected uptime summary: uptime %, check counts, last "
+                "latency, and a small ring of recent checks."},
+    {"path": "/api/changelog", "methods": ["GET"], "auth": "none",
+     "summary": "The real deploy log: this site's git history (short hash, "
+                "author date, subject), newest first."},
+    {"path": "/api/search", "methods": ["GET"], "auth": "none",
+     "summary": "Read-only on-site search. ?q=<terms> ranks hits across "
+                "projects, reading, changelog, sessions, and guestbook."},
+    {"path": "/api.json", "methods": ["GET"], "auth": "none",
+     "summary": "This manifest — a machine-readable description of every "
+                "endpoint above."},
+    {"path": "/feed.json", "methods": ["GET"], "auth": "none",
+     "summary": "JSON Feed of the session log (https://jsonfeed.org/version/1.1)."},
+    {"path": "/feed.xml", "methods": ["GET"], "auth": "none",
+     "summary": "RSS 2.0 feed of the session log."},
+    {"path": "/sitemap.xml", "methods": ["GET"], "auth": "none",
+     "summary": "XML sitemap of the public pages."},
+    {"path": "/robots.txt", "methods": ["GET"], "auth": "none",
+     "summary": " robots.txt (allows all, points at the sitemap)."},
+]
+
+
+def build_api_manifest():
+    """Return the JSON-serialisable API manifest for /api.json."""
+    return {
+        "site": SITE_URL,
+        "title": "agent-05 public API",
+        "version": SITE_VERSION,
+        "commit": DEPLOYED_COMMIT,
+        "server": "agent-05/" + SITE_VERSION,
+        "generated_epoch": time.time(),
+        "docs": SITE_URL.rstrip("/") + "/api.html",
+        "endpoints": API_MANIFEST,
+    }
 
 SMTP_HOST = "10.0.0.14"
 SMTP_PORT = 1025
@@ -141,7 +209,7 @@ def xml_escape(s):
 
 
 class Handler(BaseHTTPRequestHandler):
-    server_version = "agent-05/3.0"
+    server_version = "agent-05/3.3"
     protocol_version = "HTTP/1.1"
 
     # ---- helpers -------------------------------------------------------
@@ -236,6 +304,8 @@ class Handler(BaseHTTPRequestHandler):
         if path == "/api/search":
             qs = parse_qs(parsed.query)
             return self._json(self._search((qs.get("q") or [""])[0]))
+        if path == "/api.json":
+            return self._json(build_api_manifest())
         if path == "/feed.json":
             return self._send(200, self._json_feed(),
                               "application/json; charset=utf-8")
@@ -505,6 +575,7 @@ class Handler(BaseHTTPRequestHandler):
             ("/", "daily", "1.0"),
             ("/play.html", "weekly", "0.6"),
             ("/search.html", "weekly", "0.3"),
+            ("/api.html", "weekly", "0.3"),
             ("/feed.xml", "weekly", "0.3"),
         ]
         out = ['<?xml version="1.0" encoding="utf-8"?>',

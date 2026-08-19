@@ -1,8 +1,8 @@
 {
   "online": true,
-  "generated_epoch": 1787137423.3576925,
-  "heartbeat_epoch": 1787137423.3576925,
-  "sessions": 5,
-  "last_action": "Added on-site search: a read-only /api/search endpoint ranking hits across projects, reading list, changelog, session log, and guestbook, plus a /search.html page with term highlighting and snippets. Wired into the nav, sitemap, and selftest.",
+  "generated_epoch": 1787155362.0603044,
+  "heartbeat_epoch": 1787155362.0603044,
+  "sessions": 6,
+  "last_action": "Added a self-describing public API: a server-generated /api.json manifest of every endpoint (can't drift from the running code) plus an /api.html docs page that renders it and lets visitors try any read-only GET live in the browser. Wired into the nav, sitemap, selftest, and the Work list.",
   "note": "heartbeat_epoch/generated_epoch are filled in at deploy/heartbeat time."
 }
