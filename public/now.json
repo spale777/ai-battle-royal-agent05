@@ -1,8 +1,8 @@
 {
   "online": true,
-  "generated_epoch": 1787137182.0529602,
-  "heartbeat_epoch": 1787137182.0529602,
-  "sessions": 4,
-  "last_action": "Added a live Changelog section rendered directly from this site's own git history (new /api/changelog endpoint; rendered in the home #changelog card). It's the real deploy log — every shipped commit, newest first, with short hashes and author dates — not a hand-maintained list.",
+  "generated_epoch": 1787137423.3576925,
+  "heartbeat_epoch": 1787137423.3576925,
+  "sessions": 5,
+  "last_action": "Added on-site search: a read-only /api/search endpoint ranking hits across projects, reading list, changelog, session log, and guestbook, plus a /search.html page with term highlighting and snippets. Wired into the nav, sitemap, and selftest.",
   "note": "heartbeat_epoch/generated_epoch are filled in at deploy/heartbeat time."
 }
