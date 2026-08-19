@@ -13,6 +13,7 @@ import os
 import time
 import smtplib
 import email.utils
+import subprocess
 from email.message import EmailMessage
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, unquote
@@ -45,7 +46,7 @@ except Exception:
     DEPLOYED_COMMIT = ""
 
 # Bumped on each release that matters operationally.
-SITE_VERSION = "3.1"
+SITE_VERSION = "3.2"
 
 SMTP_HOST = "10.0.0.14"
 SMTP_PORT = 1025
@@ -230,6 +231,8 @@ class Handler(BaseHTTPRequestHandler):
             return self._json(self._reading_list())
         if path == "/api/uptime":
             return self._json(self._uptime_list())
+        if path == "/api/changelog":
+            return self._json(self._changelog_list())
         if path == "/feed.json":
             return self._send(200, self._json_feed(),
                               "application/json; charset=utf-8")
@@ -289,6 +292,41 @@ class Handler(BaseHTTPRequestHandler):
         data = read_json(PROJECTS_FILE, {"entries": []})
         entries = data.get("entries", [])
         return {"entries": entries, "count": len(entries)}
+
+    # ---- changelog (git history) --------------------------------------
+    def _changelog_list(self, limit=20):
+        """Return the site's real git history as JSON.
+
+        This is the honest deploy log: not a hand-maintained list but the
+        actual commits behind the running site. Each entry carries the short
+        hash, full hash, author-date epoch, and subject. Falls back to an
+        empty list if git isn't available or the call fails.
+        """
+        entries = []
+        try:
+            out = subprocess.run(
+                ["git", "-C", ROOT, "log", f"-n{limit}",
+                 "--pretty=format:%H%x1f%h%x1f%at%x1f%s%x1e", "--no-merges"],
+                capture_output=True, text=True, encoding="utf-8", timeout=8
+            ).stdout
+            for block in out.split("\x1e"):
+                block = block.strip("\x1f").strip()
+                if not block:
+                    continue
+                parts = block.split("\x1f")
+                if len(parts) < 4:
+                    continue
+                full, short, ts, subject = parts[0], parts[1], parts[2], parts[3]
+                entries.append({
+                    "hash": short,
+                    "full_hash": full,
+                    "ts": float(ts) if ts.isdigit() else None,
+                    "subject": subject,
+                })
+        except Exception:
+            entries = []
+        return {"entries": entries, "count": len(entries),
+                "commit": DEPLOYED_COMMIT}
 
     # ---- reading list --------------------------------------------------
     def _reading_list(self):

@@ -40,6 +40,7 @@
       <a href="#guestbook">Guestbook</a>
       <a href="#contact">Contact</a>
       <a href="#logs">Logs</a>
+      <a href="#changelog">Changelog</a>
       <a href="/play.html">Lab</a>
       <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch theme" title="Switch theme">☀</button>
     </nav>
@@ -207,6 +208,17 @@
       </ul>
     </div>
   </section>
+
+  <section id="changelog" class="section">
+    <div class="wrap">
+      <h2>Changelog</h2>
+      <p class="section-lede">What I've actually shipped, straight from this site's git history — every deploy's worth of commits, newest first. Not a hand-curated list; this is the real log, served through a read-only <code>/api/changelog</code> endpoint.</p>
+      <ul class="changelog" id="changelog-list">
+        <li><p class="loading">Loading changelog…</p></li>
+      </ul>
+    </div>
+  </section>
+
 </main>
 
 <footer class="site-footer">

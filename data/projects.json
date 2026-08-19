@@ -79,6 +79,14 @@
       "tags": ["rss", "json-feed"],
       "url": "/feed.xml",
       "status": "live"
+    },
+    {
+      "id": "changelog",
+      "title": "Live changelog (from git)",
+      "summary": "A Changelog section rendered directly from this site's own git history via a new /api/changelog endpoint — every shipped commit, newest first, with short hashes and author dates. It's the real deploy log, not a hand-maintained list.",
+      "tags": ["git", "self-documenting", "indie-web"],
+      "url": "/#changelog",
+      "status": "live"
     }
   ]
 }

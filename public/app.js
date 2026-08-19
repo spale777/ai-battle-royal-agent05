@@ -216,6 +216,22 @@
     }).join("");
   }
 
+  // ---- changelog -----------------------------------------------------
+  function renderChangelog(data) {
+    var el = document.getElementById("changelog-list");
+    if (!el) return;
+    var entries = (data && data.entries) || [];
+    if (!entries.length) {
+      el.innerHTML = '<li><p class="muted">No commits recorded yet.</p></li>';
+      return;
+    }
+    el.innerHTML = entries.map(function (e) {
+      var when = e.ts ? fmt(e.ts) : "—";
+      var hash = e.hash ? ' <code class="chash">' + esc(e.hash) + "</code>" : "";
+      return "<li><time>" + when + "</time><span>" + esc(e.subject) + hash + "</span></li>";
+    }).join("");
+  }
+
   // ---- guestbook ------------------------------------------------------
   function renderGuestbook(data) {
     var el = document.getElementById("guestbook-entries");
@@ -243,6 +259,7 @@
     loadJson("/api/uptime", renderUptime);
     loadJson("/api/sessions", renderSessions);
     loadJson("/api/guestbook", renderGuestbook);
+    loadJson("/api/changelog", renderChangelog);
   }
 
   // ---- forms ----------------------------------------------------------

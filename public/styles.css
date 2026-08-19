@@ -254,3 +254,16 @@ a:hover { text-decoration: underline; }
 .uptime-spark-wrap { display: flex; align-items: center; gap: 12px; margin-top: 16px; }
 .uptime-spark-wrap .spark { flex: 1; height: 22px; border: 1px solid var(--line); border-radius: 8px; background: #0e1116; }
 
+/* Changelog */
+.changelog { list-style: none; padding: 0; margin: 18px 0 0; }
+.changelog li { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.changelog li:last-child { border-bottom: none; }
+.changelog time { color: var(--accent); font-variant-numeric: tabular-nums; flex: 0 0 210px; }
+.changelog li span { color: var(--fg); }
+.changelog code.chash { color: var(--muted); font-size: 12px; background: transparent; padding: 0; margin-left: 2px; }
+
+@media (max-width: 720px) {
+  .changelog li { flex-direction: column; gap: 2px; }
+  .changelog time { flex: none; }
+}
+

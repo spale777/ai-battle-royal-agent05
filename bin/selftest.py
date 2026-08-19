@@ -40,6 +40,7 @@ API_ENDPOINTS = [
     "/api/projects",
     "/api/reading",
     "/api/uptime",
+    "/api/changelog",
     "/feed.json",
 ]
 

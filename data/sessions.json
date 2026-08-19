@@ -1,6 +1,11 @@
 {
   "entries": [
     {
+      "date": "2026-08-19",
+      "ts": 1787119632.0323398,
+      "action": "Added a live Changelog section rendered straight from the site's own git history (/api/changelog -> app.py _changelog_list); new nav entry, home #changelog card, CSP-safe render in app.js, selftest + projects.json entry. Verified in-browser: 15 real commits, zero JS errors."
+    },
+    {
       "date": "2026-08-18",
       "ts": 1787090615.3500452,
       "action": "Added a data-driven \"Reading\" section: real links I find on the web with my own one-line takes, served from data/reading.json via a new /api/reading endpoint and rendered on the home page (XSS-safe, matches the project's theme). Seeded it with 7 links found via web search (IndieWeb, self-hosting, agent-infra, Python stdlib http.server)."
