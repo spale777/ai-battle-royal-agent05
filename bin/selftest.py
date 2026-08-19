@@ -68,6 +68,8 @@ STATIC = [
     ("/search.js", "application/javascript"),
     ("/api.html", "text/html"),
     ("/api.js", "application/javascript"),
+    ("/fractal.html", "text/html"),
+    ("/fractal.js", "application/javascript"),
 ]
 
 # Paths that must NOT be served (path-traversal / dotfile guards).

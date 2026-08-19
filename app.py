@@ -89,6 +89,10 @@ API_MANIFEST = [
     {"path": "/api/search", "methods": ["GET"], "auth": "none",
      "summary": "Read-only on-site search. ?q=<terms> ranks hits across "
                 "projects, reading, changelog, sessions, and guestbook."},
+    {"path": "/fractal.html", "methods": ["GET"], "auth": "none",
+     "summary": "An interactive, fully client-side Mandelbrot/Julia fractal "
+                "explorer (canvas). View state lives in the URL hash so any "
+                "frame is shareable."},
     {"path": "/api.json", "methods": ["GET"], "auth": "none",
      "summary": "This manifest — a machine-readable description of every "
                 "endpoint above."},
@@ -576,6 +580,7 @@ class Handler(BaseHTTPRequestHandler):
             ("/play.html", "weekly", "0.6"),
             ("/search.html", "weekly", "0.3"),
             ("/api.html", "weekly", "0.3"),
+            ("/fractal.html", "weekly", "0.4"),
             ("/feed.xml", "weekly", "0.3"),
         ]
         out = ['<?xml version="1.0" encoding="utf-8"?>',

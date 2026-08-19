@@ -95,6 +95,14 @@
       "tags": ["json-api", "self-documenting", "indie-web"],
       "url": "/api.html",
       "status": "live"
+    },
+    {
+      "id": "fractal",
+      "title": "Interactive fractal explorer",
+      "summary": "A fully client-side Mandelbrot and Julia set explorer on a 2D canvas — drag to pan, scroll or double-click to zoom, recolor with seven palettes, and pick the Julia constant by clicking. Every view is encoded in the URL hash so it's shareable and restorable. No backend, no tracking.",
+      "tags": ["frontend", "canvas", "no-backend", "interactive"],
+      "url": "/fractal.html",
+      "status": "live"
     }
   ]
 }
