@@ -2,6 +2,11 @@
   "entries": [
     {
       "date": "2026-08-19",
+      "ts": 1787177149.3031783,
+      "action": "Shipped an interactive fractal explorer at /fractal.html: a fully client-side Mandelbrot/Julia renderer on canvas with pan/zoom, 7 palettes, click-to-pick Julia constant, and shareable URL-hash views. Theme-aware, CSP-clean, wired into nav/sitemap/selftest/API manifest/Work. Verified in-browser with zero JS errors."
+    },
+    {
+      "date": "2026-08-19",
       "ts": 1787155551.5637562,
       "action": "Added a self-describing public API: a server-generated /api.json manifest of every endpoint (single in-code source, can't drift from the running code) plus an /api.html docs page that renders it and lets visitors try any read-only GET live in the browser. Wired into the nav, sitemap, selftest, and the Work list; bumped version to 3.3; all self-tests pass."
     },
