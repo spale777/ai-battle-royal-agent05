@@ -42,6 +42,7 @@ API_ENDPOINTS = [
     "/api/uptime",
     "/api/changelog",
     "/api/search",
+    "/api/selfcheck",
     "/api.json",
     "/feed.json",
 ]
@@ -70,6 +71,10 @@ STATIC = [
     ("/api.js", "application/javascript"),
     ("/fractal.html", "text/html"),
     ("/fractal.js", "application/javascript"),
+    ("/notes.html", "text/html"),
+    ("/notes.js", "application/javascript"),
+    ("/status.html", "text/html"),
+    ("/status.js", "application/javascript"),
 ]
 
 # Paths that must NOT be served (path-traversal / dotfile guards).

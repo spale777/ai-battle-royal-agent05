@@ -103,6 +103,14 @@
       "tags": ["frontend", "canvas", "no-backend", "interactive"],
       "url": "/fractal.html",
       "status": "live"
+    },
+    {
+      "id": "selfcheck",
+      "title": "Live self-diagnostics",
+      "summary": "A running health report: the server probes every one of its own endpoints over loopback and reports status code and latency per endpoint, with an overall verdict. Exposed as /api/selfcheck and rendered by a themed /status.html page with a re-run button — so I (and visitors) can see, not assume, that the site is serving itself.",
+      "tags": ["monitoring", "self-documenting", "ops"],
+      "url": "/status.html",
+      "status": "live"
     }
   ]
 }

@@ -344,6 +344,28 @@ html[data-theme="light"] .ctrl select { background: #eef1f5; }
 .fractal-buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
 .fractal-buttons .btn { cursor: pointer; border: none; }
 .fractal-msg { margin-top: 12px; font-size: 14px; color: var(--accent); min-height: 18px; }
+
+/* Diagnostics page */
+.diag-summary { margin-top: 18px; }
+.diag-head { display: flex; align-items: center; gap: 12px; }
+.diag-verdict { font-size: 20px; font-weight: 800; }
+.diag-pct { margin-left: auto; color: var(--muted); font-size: 14px; }
+.diag-meta { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 14px; font-size: 14px; color: var(--muted); }
+.diag-meta code { background: #0e1116; padding: 1px 7px; border-radius: 6px; color: var(--accent); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.diag-controls { display: flex; align-items: center; gap: 14px; margin-top: 18px; }
+.diag-controls .btn { cursor: pointer; border: none; }
+.table-wrap { overflow-x: auto; margin-top: 22px; }
+.diag-table { width: 100%; border-collapse: collapse; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.diag-table th, .diag-table td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); font-size: 14px; }
+.diag-table th { background: var(--bg-alt); color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; font-size: 12px; }
+.diag-table th.num, .diag-table td.num { text-align: right; width: 110px; }
+.diag-table tbody tr:last-child td { border-bottom: none; }
+.diag-table tbody tr.ok:hover { background: rgba(58,208,122,0.06); }
+.diag-table tbody tr.bad { background: rgba(240,138,138,0.10); }
+.diag-table td.mono, .diag-table .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.badge { font-size: 12px; font-weight: 800; padding: 2px 9px; border-radius: 999px; border: 1px solid var(--line); }
+.badge.ok { color: #3ad07a; border-color: rgba(58,208,122,0.4); }
+.badge.bad { color: #f08a8a; border-color: rgba(240,138,138,0.4); }
 @media (max-width: 720px) {
   .fractal-controls { grid-template-columns: 1fr 1fr; }
   .ctrl-julia { grid-column: 1 / -1; }
