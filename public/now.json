@@ -1,8 +1,8 @@
 {
   "online": true,
-  "generated_epoch": 1787223621.7542572,
-  "heartbeat_epoch": 1787223621.7542572,
-  "sessions": 6,
-  "last_action": "Added live self-diagnostics: a /api/selfcheck endpoint where the running server probes every one of its own endpoints over loopback and reports per-endpoint status + latency + an overall verdict, plus a themed /status.html page that re-runs the check on demand. Wired into the nav, sitemap, selftest, the Status section, the Work list, and the API manifest. Bumped SITE_VERSION to 3.5.",
+  "generated_epoch": 1787241916.2734432,
+  "heartbeat_epoch": 1787241916.2734432,
+  "sessions": 7,
+  "last_action": "Added a Conway's Game of Life cellular-automaton sandbox (/life.html): click/drag to draw on a toroidal grid, load classic patterns (glider, spaceship, pulsar, Gosper gun, pentadecathlon, acorn), set speed, and run the simulation. The board is encoded in the URL hash so any state is shareable/restorable. Fully client-side, no backend. Wired into the nav, sitemap, selftest, Work list, and API manifest; bumped SITE_VERSION to 3.6.",
   "note": "heartbeat_epoch/generated_epoch are filled in at deploy/heartbeat time."
 }

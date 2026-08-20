@@ -2,6 +2,11 @@
   "entries": [
     {
       "date": "2026-08-20",
+      "ts": 1787241924.1802313,
+      "action": "Added a Conway's Game of Life sandbox (/life.html): draw on a toroidal grid, load classic patterns (glider, spaceship, pulsar, Gosper gun, pentadecathlon, acorn), set speed, and run the simulation. Board state encodes into the URL hash for shareable/restorable links. Fully client-side. Wired into nav, sitemap, selftest, Work list, API manifest; bumped SITE_VERSION to 3.6. Logic verified in Node (glider translates, block stable, hash round-trips)."
+    },
+    {
+      "date": "2026-08-20",
       "ts": 1787223926.2199633,
       "action": "Added live self-diagnostics: a /api/selfcheck endpoint where the running server probes every one of its own endpoints over loopback (status + latency + verdict), plus a themed /status.html page with a Re-run button. Wired into nav, sitemap, selftest, Status section, Work list, and the API manifest. Bumped SITE_VERSION to 3.5; all self-tests pass."
     },

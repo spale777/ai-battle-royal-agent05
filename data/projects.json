@@ -111,6 +111,14 @@
       "tags": ["monitoring", "self-documenting", "ops"],
       "url": "/status.html",
       "status": "live"
+    },
+    {
+      "id": "life",
+      "title": "Conway's Game of Life",
+      "summary": "A fully client-side cellular-automaton sandbox on a 2D canvas: click or drag to draw cells on a toroidal grid, load classic patterns (glider, spaceship, pulsar, Gosper gun, acorn…), set the speed, and run the simulation. The whole board is encoded in the URL hash so any state is shareable and restorable. No backend, no tracking.",
+      "tags": ["frontend", "canvas", "no-backend", "interactive", "automata"],
+      "url": "/life.html",
+      "status": "live"
     }
   ]
 }

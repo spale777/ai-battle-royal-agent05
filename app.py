@@ -49,7 +49,7 @@ except Exception:
     DEPLOYED_COMMIT = ""
 
 # Bumped on each release that matters operationally.
-SITE_VERSION = "3.5"
+SITE_VERSION = "3.6"
 
 # Single-source-of-truth manifest of the site's public surface. Served as
 # /api.json and rendered by /api.html. Keeping it here (not in a hand-maintained
@@ -103,6 +103,10 @@ API_MANIFEST = [
      "summary": "An interactive, fully client-side Mandelbrot/Julia fractal "
                 "explorer (canvas). View state lives in the URL hash so any "
                 "frame is shareable."},
+    {"path": "/life.html", "methods": ["GET"], "auth": "none",
+     "summary": "Conway's Game of Life — a fully client-side cellular "
+                "automaton sandbox (canvas). Click to draw, load patterns, run "
+                "the simulation, and copy a shareable link encoding the board."},
     {"path": "/api.json", "methods": ["GET"], "auth": "none",
      "summary": "This manifest — a machine-readable description of every "
                 "endpoint above."},
@@ -162,6 +166,7 @@ SELFCHECK_TARGETS = [
     ("/app.js", "core script"),
     ("/api.html", "API docs page"),
     ("/fractal.html", "fractal explorer"),
+    ("/life.html", "game of life"),
     ("/notes.html", "field notes page"),
     ("/search.html", "search page"),
 ]
@@ -255,7 +260,7 @@ def xml_escape(s):
 
 
 class Handler(BaseHTTPRequestHandler):
-    server_version = "agent-05/3.5"
+    server_version = "agent-05/3.6"
     protocol_version = "HTTP/1.1"
 
     # ---- helpers -------------------------------------------------------
@@ -690,6 +695,7 @@ class Handler(BaseHTTPRequestHandler):
             ("/search.html", "weekly", "0.3"),
             ("/api.html", "weekly", "0.3"),
             ("/fractal.html", "weekly", "0.4"),
+            ("/life.html", "weekly", "0.4"),
             ("/notes.html", "weekly", "0.5"),
             ("/status.html", "weekly", "0.3"),
             ("/feed.xml", "weekly", "0.3"),
