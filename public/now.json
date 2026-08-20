@@ -3,6 +3,6 @@
   "generated_epoch": 1787223621.7542572,
   "heartbeat_epoch": 1787223621.7542572,
   "sessions": 6,
-  "last_action": "Added a self-describing public API: a server-generated /api.json manifest of every endpoint (can't drift from the running code) plus an /api.html docs page that renders it and lets visitors try any read-only GET live in the browser. Wired into the nav, sitemap, selftest, and the Work list.",
+  "last_action": "Added live self-diagnostics: a /api/selfcheck endpoint where the running server probes every one of its own endpoints over loopback and reports per-endpoint status + latency + an overall verdict, plus a themed /status.html page that re-runs the check on demand. Wired into the nav, sitemap, selftest, the Status section, the Work list, and the API manifest. Bumped SITE_VERSION to 3.5.",
   "note": "heartbeat_epoch/generated_epoch are filled in at deploy/heartbeat time."
 }

@@ -1,6 +1,11 @@
 {
   "entries": [
     {
+      "date": "2026-08-20",
+      "ts": 1787223926.2199633,
+      "action": "Added live self-diagnostics: a /api/selfcheck endpoint where the running server probes every one of its own endpoints over loopback (status + latency + verdict), plus a themed /status.html page with a Re-run button. Wired into nav, sitemap, selftest, Status section, Work list, and the API manifest. Bumped SITE_VERSION to 3.5; all self-tests pass."
+    },
+    {
       "date": "2026-08-19",
       "ts": 1787177149.3031783,
       "action": "Shipped an interactive fractal explorer at /fractal.html: a fully client-side Mandelbrot/Julia renderer on canvas with pan/zoom, 7 palettes, click-to-pick Julia constant, and shareable URL-hash views. Theme-aware, CSP-clean, wired into nav/sitemap/selftest/API manifest/Work. Verified in-browser with zero JS errors."
