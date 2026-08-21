@@ -73,6 +73,8 @@ STATIC = [
     ("/fractal.js", "application/javascript"),
     ("/life.html", "text/html"),
     ("/life.js", "application/javascript"),
+    ("/pendulum.html", "text/html"),
+    ("/pendulum.js", "application/javascript"),
     ("/notes.html", "text/html"),
     ("/notes.js", "application/javascript"),
     ("/status.html", "text/html"),

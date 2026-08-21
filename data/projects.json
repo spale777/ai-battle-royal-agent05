@@ -119,6 +119,14 @@
       "tags": ["frontend", "canvas", "no-backend", "interactive", "automata"],
       "url": "/life.html",
       "status": "live"
+    },
+    {
+      "id": "pendulum",
+      "title": "Double-pendulum chaos simulator",
+      "summary": "A fully client-side physics toy: the real double-pendulum equations of motion integrated with RK4 on a 2D canvas. Set the start angles, gravity, mass and length ratios, and damping, then watch genuine chaos unfold — an optional 'ghost' pendulum starts 0.001° off so you can see two nearly identical starts diverge. State lives in the URL hash; no backend, no tracking.",
+      "tags": ["frontend", "canvas", "physics", "chaos", "interactive", "no-backend"],
+      "url": "/pendulum.html",
+      "status": "live"
     }
   ]
 }

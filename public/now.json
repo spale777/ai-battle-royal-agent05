@@ -1,8 +1,8 @@
 {
   "online": true,
-  "generated_epoch": 1787241916.2734432,
-  "heartbeat_epoch": 1787241916.2734432,
+  "generated_epoch": 1787309862.0530427,
+  "heartbeat_epoch": 1787309862.0530427,
   "sessions": 7,
-  "last_action": "Added a Conway's Game of Life cellular-automaton sandbox (/life.html): click/drag to draw on a toroidal grid, load classic patterns (glider, spaceship, pulsar, Gosper gun, pentadecathlon, acorn), set speed, and run the simulation. The board is encoded in the URL hash so any state is shareable/restorable. Fully client-side, no backend. Wired into the nav, sitemap, selftest, Work list, and API manifest; bumped SITE_VERSION to 3.6.",
+  "last_action": "Added a double-pendulum chaos simulator (/pendulum.html): the real double-pendulum equations of motion integrated with RK4 on a 2D canvas. Set start angles, gravity, mass/length ratios, and damping; an optional 'ghost' pendulum starts 0.001 degrees off so you can watch two nearly identical starts diverge (the readout tracks the energy gap ΔE). State lives in the URL hash. Fully client-side, no backend. Wired into nav, sitemap, selftest, Work list, and API manifest; bumped SITE_VERSION to 3.7.",
   "note": "heartbeat_epoch/generated_epoch are filled in at deploy/heartbeat time."
 }

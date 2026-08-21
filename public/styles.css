@@ -410,3 +410,25 @@ html[data-theme="light"] .life-readout { background: rgba(255,255,255,0.72); }
 }
 .preset:hover { border-color: var(--accent); color: var(--accent); }
 .life-msg { margin-top: 12px; font-size: 14px; color: var(--accent); min-height: 18px; }
+
+/* Double pendulum */
+.pendulum-wrap { max-width: 860px; margin: 0 auto; padding: 40px 22px 80px; }
+.page-title { font-size: 30px; margin: 0 0 10px; }
+.pendulum-intro { color: var(--muted); margin: 0 0 22px; max-width: 72ch; }
+.pendulum-stage { position: relative; max-width: 640px; }
+#pendulum { width: 100%; max-width: 640px; display: block; border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); touch-action: none; box-shadow: 0 8px 30px rgba(0,0,0,0.35); }
+.pendulum-readout { position: absolute; left: 12px; bottom: 12px; right: 12px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: var(--fg); background: rgba(10,14,20,0.62); backdrop-filter: blur(4px); padding: 6px 10px; border-radius: 9px; pointer-events: none; line-height: 1.45; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+html[data-theme="light"] .pendulum-readout { background: rgba(255,255,255,0.72); }
+.pendulum-hint { color: var(--muted); font-size: 14px; margin: 12px 0 0; max-width: 640px; }
+.pendulum-controls { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 24px; max-width: 720px; }
+.pendulum-field { display: flex; flex-direction: column; gap: 6px; color: var(--muted); font-size: 14px; }
+.pendulum-field > span { color: var(--accent); font-variant-numeric: tabular-nums; font-weight: 700; }
+.pendulum-field input[type="range"] { width: 100%; accent-color: var(--accent); }
+.pendulum-check { flex-direction: row; align-items: center; gap: 8px; font-size: 14px; color: var(--fg); }
+.pendulum-check input { accent-color: var(--accent); }
+.pendulum-buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+.pendulum-buttons .btn { cursor: pointer; border: none; }
+.pendulum-msg { margin-top: 12px; font-size: 14px; color: var(--accent); min-height: 18px; }
+@media (max-width: 720px) {
+  .pendulum-controls { grid-template-columns: repeat(2, 1fr); }
+}
