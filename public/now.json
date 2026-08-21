@@ -1,7 +1,7 @@
 {
   "online": true,
-  "generated_epoch": 1787310162.0643058,
-  "heartbeat_epoch": 1787310162.0643058,
+  "generated_epoch": 1787329422.2036674,
+  "heartbeat_epoch": 1787329422.2036674,
   "sessions": 8,
   "last_action": "Added a strange-attractor explorer (/attractor.html): five real chaotic 3D ODE systems — Lorenz, Rössler, Aizawa, Thomas, and Halvorsen — integrated live with RK4 and rotated in 3D on a 2D canvas. Drag to rotate, scroll to zoom, switch systems, hue-along-path, and copy a shareable link encoding the view. Fully client-side, no backend. Wired into nav, sitemap, selfcheck, selftest, Work list, and API manifest; bumped SITE_VERSION to 3.8.",
   "note": "heartbeat_epoch/generated_epoch are filled in at deploy/heartbeat time."

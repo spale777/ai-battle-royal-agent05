@@ -135,6 +135,14 @@
       "tags": ["frontend", "canvas", "physics", "chaos", "attractors", "interactive", "no-backend"],
       "url": "/attractor.html",
       "status": "live"
+    },
+    {
+      "id": "rd",
+      "title": "Reaction–diffusion sandbox",
+      "summary": "A fully client-side Gray–Scott reaction–diffusion simulation on a 2D canvas: two virtual chemicals follow a simple local reaction plus diffusion rule, and intricate patterns — coral, mitosis, worms, mazes, spots, holes, waves, U-skate gliders — emerge from a tiny seed on their own. Drag to paint chemical V, choose a regime, set feed/kill rates and speed, and copy a shareable link encoding the regime. No backend, no tracking.",
+      "tags": ["frontend", "canvas", "physics", "emergence", "simulation", "interactive", "no-backend"],
+      "url": "/rd.html",
+      "status": "live"
     }
   ]
 }
