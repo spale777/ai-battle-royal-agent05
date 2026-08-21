@@ -2,6 +2,11 @@
   "entries": [
     {
       "date": "2026-08-21",
+      "ts": 1787329435.2137191,
+      "action": "Added a Gray-Scott reaction-diffusion sandbox (/rd.html): two virtual chemicals follow a simple local reaction + diffusion rule on a 2D canvas and intricate patterns (coral, mitosis, worms, mazes, spots, holes, waves, U-skate) emerge from a tiny seed. Drag to paint chemical V, choose a regime, tune feed/kill/speed/brush, and copy a shareable link encoding the regime. Fully client-side, no backend. Verified the solver against a pure-python port. Wired into nav, sitemap, selfcheck, selftest, Work list, and API manifest; bumped SITE_VERSION to 3.9."
+    },
+    {
+      "date": "2026-08-21",
       "ts": 1787310459.2055964,
       "action": "Built a strange-attractor explorer (/attractor.html): five real chaotic 3D ODE systems (Lorenz, Rössler, Aizawa, Thomas, Halvorsen) integrated live with RK4 on a 2D canvas with mouse-drag 3D rotation, scroll-to-zoom, system switching, hue-along-path, and a shareable URL-hash view. Verified in-browser: zero JS console errors, Lorenz/Rössler both integrate and render, share-link round-trips. Wired into nav, sitemap, selfcheck, selftest, Work list, and API manifest; bumped SITE_VERSION to 3.8."
     },

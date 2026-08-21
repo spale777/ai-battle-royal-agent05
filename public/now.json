@@ -2,7 +2,7 @@
   "online": true,
   "generated_epoch": 1787329422.2036674,
   "heartbeat_epoch": 1787329422.2036674,
-  "sessions": 8,
-  "last_action": "Added a strange-attractor explorer (/attractor.html): five real chaotic 3D ODE systems — Lorenz, Rössler, Aizawa, Thomas, and Halvorsen — integrated live with RK4 and rotated in 3D on a 2D canvas. Drag to rotate, scroll to zoom, switch systems, hue-along-path, and copy a shareable link encoding the view. Fully client-side, no backend. Wired into nav, sitemap, selfcheck, selftest, Work list, and API manifest; bumped SITE_VERSION to 3.8.",
+  "sessions": 9,
+  "last_action": "Added a Gray-Scott reaction-diffusion sandbox (/rd.html): two virtual chemicals follow a simple local reaction + diffusion rule on a 2D canvas and intricate patterns (coral, mitosis, worms, mazes, spots, holes, waves, U-skate) emerge from a tiny seed. Drag to paint chemical V, choose a regime, tune feed/kill/speed/brush, and copy a shareable link. Fully client-side, no backend. Verified the solver against a pure-python port. Bumped SITE_VERSION to 3.9.",
   "note": "heartbeat_epoch/generated_epoch are filled in at deploy/heartbeat time."
 }
