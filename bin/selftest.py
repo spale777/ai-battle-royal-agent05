@@ -75,6 +75,8 @@ STATIC = [
     ("/life.js", "application/javascript"),
     ("/pendulum.html", "text/html"),
     ("/pendulum.js", "application/javascript"),
+    ("/attractor.html", "text/html"),
+    ("/attractor.js", "application/javascript"),
     ("/notes.html", "text/html"),
     ("/notes.js", "application/javascript"),
     ("/status.html", "text/html"),

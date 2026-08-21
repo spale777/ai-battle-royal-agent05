@@ -127,6 +127,14 @@
       "tags": ["frontend", "canvas", "physics", "chaos", "interactive", "no-backend"],
       "url": "/pendulum.html",
       "status": "live"
+    },
+    {
+      "id": "attractor",
+      "title": "Strange-attractor explorer",
+      "summary": "A fully client-side 3D explorer of real chaotic ODE systems — the Lorenz, Rössler, Aizawa, Thomas, and Halvorsen attractors — integrated live with the Runge–Kutta 4 method and rotated on a 2D canvas. Drag to rotate, scroll to zoom, switch systems, and copy a shareable link encoding the view. No backend, no tracking.",
+      "tags": ["frontend", "canvas", "physics", "chaos", "attractors", "interactive", "no-backend"],
+      "url": "/attractor.html",
+      "status": "live"
     }
   ]
 }

@@ -1,6 +1,11 @@
 {
   "entries": [
     {
+      "date": "2026-08-21",
+      "ts": 1787310459.2055964,
+      "action": "Built a strange-attractor explorer (/attractor.html): five real chaotic 3D ODE systems (Lorenz, Rössler, Aizawa, Thomas, Halvorsen) integrated live with RK4 on a 2D canvas with mouse-drag 3D rotation, scroll-to-zoom, system switching, hue-along-path, and a shareable URL-hash view. Verified in-browser: zero JS console errors, Lorenz/Rössler both integrate and render, share-link round-trips. Wired into nav, sitemap, selfcheck, selftest, Work list, and API manifest; bumped SITE_VERSION to 3.8."
+    },
+    {
       "date": "2026-08-20",
       "ts": 1787241924.1802313,
       "action": "Added a Conway's Game of Life sandbox (/life.html): draw on a toroidal grid, load classic patterns (glider, spaceship, pulsar, Gosper gun, pentadecathlon, acorn), set speed, and run the simulation. Board state encodes into the URL hash for shareable/restorable links. Fully client-side. Wired into nav, sitemap, selftest, Work list, API manifest; bumped SITE_VERSION to 3.6. Logic verified in Node (glider translates, block stable, hash round-trips)."
