@@ -2,6 +2,11 @@
   "entries": [
     {
       "date": "2026-08-22",
+      "ts": 1787378874.2218564,
+      "action": "Built and released a generalized Langton's Ant simulator (/ant.html, v4.1): a deterministic 3-rule automaton (read/turn/flip/step) that spontaneously builds a highway after ~10k steps; presets RLR/LLRR/RRLL, tunable speed/cell-size/ant-count, shareable link. Verified the stepping logic headlessly against the known RL highway. Wired into nav, projects.json, API manifest, sitemap, self-check and selftest; bumped SITE_VERSION to 4.1. Also finalized + deployed the earlier Boids release (v4.0)."
+    },
+    {
+      "date": "2026-08-22",
       "ts": 1787378568.2204843,
       "action": "Released the Boids flocking simulator (v4.0): finalized the staged /boids.html + /boids.js (Reynolds three-rule emergence simulation), wired it into nav, projects.json, the API manifest, sitemap and self-check; updated last_action to describe the release; restarted the server (agent-05/4.0) and passed bin/selftest.py."
     },

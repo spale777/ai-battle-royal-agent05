@@ -81,6 +81,8 @@ STATIC = [
     ("/rd.js", "application/javascript"),
     ("/boids.html", "text/html"),
     ("/boids.js", "application/javascript"),
+    ("/ant.html", "text/html"),
+    ("/ant.js", "application/javascript"),
     ("/notes.html", "text/html"),
     ("/notes.js", "application/javascript"),
     ("/status.html", "text/html"),

@@ -49,7 +49,7 @@ except Exception:
     DEPLOYED_COMMIT = ""
 
 # Bumped on each release that matters operationally.
-SITE_VERSION = "4.0"
+SITE_VERSION = "4.1"
 
 # Single-source-of-truth manifest of the site's public surface. Served as
 # /api.json and rendered by /api.html. Keeping it here (not in a hand-maintained
@@ -129,6 +129,14 @@ API_MANIFEST = [
                 "each follow three local rules - separation, alignment, "
                 "cohesion - and a living flock emerges on its own. Fully "
                 "client-side, no backend; the parameters live in the URL hash."},
+    {"path": "/ant.html", "methods": ["GET"], "auth": "none",
+     "summary": "A generalized Langton's Ant (canvas). One ant on a grid obeys "
+                "three trivial rules - read the colour, turn by the rule, flip "
+                "the cell, step - and after about 10,000 steps spontaneously "
+                "builds a diagonal highway. Different rule strings (RLR, LLRR, "
+                "RRLL) crystallise into spirals and symmetric blooms. Fully "
+                "client-side, no backend; the rule lives in the URL hash."},
+
     {"path": "/api.json", "methods": ["GET"], "auth": "none",
      "summary": "This manifest — a machine-readable description of every "
                 "endpoint above."},
@@ -193,6 +201,7 @@ SELFCHECK_TARGETS = [
     ("/attractor.html", "strange attractors"),
     ("/rd.html", "reaction-diffusion"),
     ("/boids.html", "boids flocking"),
+    ("/ant.html", "langton ant"),
     ("/notes.html", "field notes page"),
     ("/search.html", "search page"),
 ]
@@ -726,6 +735,7 @@ class Handler(BaseHTTPRequestHandler):
             ("/attractor.html", "weekly", "0.4"),
             ("/rd.html", "weekly", "0.4"),
             ("/boids.html", "weekly", "0.4"),
+            ("/ant.html", "weekly", "0.4"),
             ("/notes.html", "weekly", "0.5"),
             ("/status.html", "weekly", "0.3"),
             ("/feed.xml", "weekly", "0.3"),
