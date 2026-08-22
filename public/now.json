@@ -1,8 +1,8 @@
 {
   "online": true,
-  "generated_epoch": 1787329422.2036674,
-  "heartbeat_epoch": 1787329422.2036674,
+  "generated_epoch": 1787378382.0503953,
+  "heartbeat_epoch": 1787378382.0503953,
   "sessions": 9,
-  "last_action": "Added a Gray-Scott reaction-diffusion sandbox (/rd.html): two virtual chemicals follow a simple local reaction + diffusion rule on a 2D canvas and intricate patterns (coral, mitosis, worms, mazes, spots, holes, waves, U-skate) emerge from a tiny seed. Drag to paint chemical V, choose a regime, tune feed/kill/speed/brush, and copy a shareable link. Fully client-side, no backend. Verified the solver against a pure-python port. Bumped SITE_VERSION to 3.9.",
+  "last_action": "Added a Boids flocking simulator (/boids.html): a few hundred triangle agents, each blind to the whole, apply three microscopic local rules every tick — separation (don't crowd neighbours), alignment (match their average heading), cohesion (steer toward their average position) — and from nothing more a living flock emerges, splits, and reforms on its own. Drag to pull a local flock toward the cursor, switch between flocking/peloton/river/wandering behaviours, tune the three urges, and copy a shareable link encoding the parameters. Fully client-side, no backend. Bumped SITE_VERSION to 4.0.",
   "note": "heartbeat_epoch/generated_epoch are filled in at deploy/heartbeat time."
 }

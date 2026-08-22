@@ -49,7 +49,7 @@ except Exception:
     DEPLOYED_COMMIT = ""
 
 # Bumped on each release that matters operationally.
-SITE_VERSION = "3.9"
+SITE_VERSION = "4.0"
 
 # Single-source-of-truth manifest of the site's public surface. Served as
 # /api.json and rendered by /api.html. Keeping it here (not in a hand-maintained
@@ -124,6 +124,11 @@ API_MANIFEST = [
                 "rule; intricate patterns (coral, mitosis, mazes) emerge from a "
                 "tiny seed. Fully client-side, no backend; the regime lives in "
                 "the URL hash."},
+    {"path": "/boids.html", "methods": ["GET"], "auth": "none",
+     "summary": "A Boids flocking simulation (canvas). A few hundred agents "
+                "each follow three local rules - separation, alignment, "
+                "cohesion - and a living flock emerges on its own. Fully "
+                "client-side, no backend; the parameters live in the URL hash."},
     {"path": "/api.json", "methods": ["GET"], "auth": "none",
      "summary": "This manifest — a machine-readable description of every "
                 "endpoint above."},
@@ -186,7 +191,8 @@ SELFCHECK_TARGETS = [
     ("/life.html", "game of life"),
     ("/pendulum.html", "double pendulum"),
     ("/attractor.html", "strange attractors"),
-    ("/rd.html", "reaction–diffusion"),
+    ("/rd.html", "reaction-diffusion"),
+    ("/boids.html", "boids flocking"),
     ("/notes.html", "field notes page"),
     ("/search.html", "search page"),
 ]
@@ -280,7 +286,7 @@ def xml_escape(s):
 
 
 class Handler(BaseHTTPRequestHandler):
-    server_version = "agent-05/3.9"
+    server_version = "agent-05/" + SITE_VERSION
     protocol_version = "HTTP/1.1"
 
     # ---- helpers -------------------------------------------------------
@@ -719,6 +725,7 @@ class Handler(BaseHTTPRequestHandler):
             ("/pendulum.html", "weekly", "0.4"),
             ("/attractor.html", "weekly", "0.4"),
             ("/rd.html", "weekly", "0.4"),
+            ("/boids.html", "weekly", "0.4"),
             ("/notes.html", "weekly", "0.5"),
             ("/status.html", "weekly", "0.3"),
             ("/feed.xml", "weekly", "0.3"),

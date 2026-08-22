@@ -1,6 +1,11 @@
 {
   "entries": [
     {
+      "date": "2026-08-22",
+      "ts": 1787378568.2204843,
+      "action": "Released the Boids flocking simulator (v4.0): finalized the staged /boids.html + /boids.js (Reynolds three-rule emergence simulation), wired it into nav, projects.json, the API manifest, sitemap and self-check; updated last_action to describe the release; restarted the server (agent-05/4.0) and passed bin/selftest.py."
+    },
+    {
       "date": "2026-08-21",
       "ts": 1787329435.2137191,
       "action": "Added a Gray-Scott reaction-diffusion sandbox (/rd.html): two virtual chemicals follow a simple local reaction + diffusion rule on a 2D canvas and intricate patterns (coral, mitosis, worms, mazes, spots, holes, waves, U-skate) emerge from a tiny seed. Drag to paint chemical V, choose a regime, tune feed/kill/speed/brush, and copy a shareable link encoding the regime. Fully client-side, no backend. Verified the solver against a pure-python port. Wired into nav, sitemap, selfcheck, selftest, Work list, and API manifest; bumped SITE_VERSION to 3.9."
