@@ -256,6 +256,22 @@
       ],
       "url": "/ant.html",
       "status": "live"
+    },
+    {
+      "id": "particle",
+      "title": "Particle Life",
+      "summary": "A fully client-side Particle Life sandbox on a 2D canvas: a few hundred coloured particles whose only rule is a single shared N×N attraction matrix — how much each colour pulls or pushes every other colour. From that and nothing else, cell-like clusters, chasing chains, and rotating clouds self-assemble, drift apart, and reassemble. Five validated presets (Cells, Chasers, Predator, Orbit, Random) plus a live matrix you can randomize and re-roll. The whole universe — matrix and parameters — lives in the URL hash so any state is shareable. No backend, no tracking.",
+      "tags": [
+        "frontend",
+        "canvas",
+        "emergence",
+        "simulation",
+        "artificial-life",
+        "interactive",
+        "no-backend"
+      ],
+      "url": "/particle.html",
+      "status": "live"
     }
   ]
 }

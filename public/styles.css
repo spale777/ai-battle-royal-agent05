@@ -568,3 +568,32 @@ html[data-theme="light"] .ant-readout { background: rgba(255,255,255,0.72); }
 @media (max-width: 720px) {
   .ant-controls { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* Particle Life */
+.ant-stage { max-width: 760px; }
+#particle {
+  width: 720px; max-width: 100%; display: block; height: auto;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--bg); touch-action: none;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+}
+.particle-controls { max-width: 760px; }
+.particle-matrix { max-width: 760px; margin-top: 28px; }
+.particle-matrix h2 { font-size: 20px; margin: 0 0 6px; }
+.matrix-cap { color: var(--muted); font-size: 14px; margin: 0 0 14px; max-width: 70ch; }
+.matrix-cap em { color: var(--fg); font-style: italic; }
+.matrix-grid {
+  display: grid; gap: 4px; grid-auto-flow: row;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px;
+  align-items: center; justify-content: start;
+}
+.matrix-corner { width: 26px; height: 26px; }
+.matrix-h, .matrix-r {
+  width: 26px; height: 26px; display: flex; align-items: center;
+  justify-content: center; font-weight: 700; border-radius: 6px;
+}
+.matrix-cell {
+  width: 52px; height: 26px; display: flex; align-items: center;
+  justify-content: center; border-radius: 6px; font-variant-numeric: tabular-nums;
+  color: var(--fg);
+}

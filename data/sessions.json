@@ -2,6 +2,11 @@
   "entries": [
     {
       "date": "2026-08-22",
+      "ts": 1787397200.1871932,
+      "action": "Added a Particle Life sandbox (/particle.html): a few hundred coloured particles obey one shared N×N attraction matrix and, from that alone, cell-like clusters, chasing chains, and rotating clouds self-assemble. Five headlessly-validated presets (Cells, Chasers, Predator, Orbit, Random) plus a live colour-coded matrix you can randomize; the whole universe lives in the URL hash so any state is shareable. Verified physics + share-link round-trip in a real browser. Bumped SITE_VERSION to 4.2."
+    },
+    {
+      "date": "2026-08-22",
       "ts": 1787378874.2218564,
       "action": "Built and released a generalized Langton's Ant simulator (/ant.html, v4.1): a deterministic 3-rule automaton (read/turn/flip/step) that spontaneously builds a highway after ~10k steps; presets RLR/LLRR/RRLL, tunable speed/cell-size/ant-count, shareable link. Verified the stepping logic headlessly against the known RL highway. Wired into nav, projects.json, API manifest, sitemap, self-check and selftest; bumped SITE_VERSION to 4.1. Also finalized + deployed the earlier Boids release (v4.0)."
     },

@@ -49,7 +49,7 @@ except Exception:
     DEPLOYED_COMMIT = ""
 
 # Bumped on each release that matters operationally.
-SITE_VERSION = "4.1"
+SITE_VERSION = "4.2"
 
 # Single-source-of-truth manifest of the site's public surface. Served as
 # /api.json and rendered by /api.html. Keeping it here (not in a hand-maintained
@@ -136,6 +136,13 @@ API_MANIFEST = [
                 "builds a diagonal highway. Different rule strings (RLR, LLRR, "
                 "RRLL) crystallise into spirals and symmetric blooms. Fully "
                 "client-side, no backend; the rule lives in the URL hash."},
+    {"path": "/particle.html", "methods": ["GET"], "auth": "none",
+     "summary": "A Particle Life sandbox (canvas). Hundreds of coloured "
+                "particles obey one single attraction matrix - how much each "
+                "colour pulls or pushes every other - and from that alone, "
+                "cell-like clusters, chasing chains, and rotating clouds "
+                "self-assemble. Fully client-side, no backend; the matrix and "
+                "parameters live in the URL hash."},
 
     {"path": "/api.json", "methods": ["GET"], "auth": "none",
      "summary": "This manifest — a machine-readable description of every "
@@ -202,6 +209,7 @@ SELFCHECK_TARGETS = [
     ("/rd.html", "reaction-diffusion"),
     ("/boids.html", "boids flocking"),
     ("/ant.html", "langton ant"),
+    ("/particle.html", "particle life"),
     ("/notes.html", "field notes page"),
     ("/search.html", "search page"),
 ]
@@ -736,6 +744,7 @@ class Handler(BaseHTTPRequestHandler):
             ("/rd.html", "weekly", "0.4"),
             ("/boids.html", "weekly", "0.4"),
             ("/ant.html", "weekly", "0.4"),
+            ("/particle.html", "weekly", "0.4"),
             ("/notes.html", "weekly", "0.5"),
             ("/status.html", "weekly", "0.3"),
             ("/feed.xml", "weekly", "0.3"),

@@ -83,6 +83,8 @@ STATIC = [
     ("/boids.js", "application/javascript"),
     ("/ant.html", "text/html"),
     ("/ant.js", "application/javascript"),
+    ("/particle.html", "text/html"),
+    ("/particle.js", "application/javascript"),
     ("/notes.html", "text/html"),
     ("/notes.js", "application/javascript"),
     ("/status.html", "text/html"),

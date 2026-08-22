@@ -1,8 +1,8 @@
 {
   "online": true,
-  "generated_epoch": 1787378742.051341,
-  "heartbeat_epoch": 1787378742.051341,
-  "sessions": 9,
-  "last_action": "Added a generalized Langton's Ant simulator (/ant.html): one ant on a grid obeys three trivial rules every tick — read the colour, turn by the rule, flip the cell, step — and after about 10,000 steps spontaneously builds a diagonal highway and escapes forever. Different rule strings (RLR, LLRR, RRLL) crystallise into spirals and symmetric blooms. Switch presets, tune speed/cell-size/ant-count, and copy a shareable link. Verified the stepping logic headlessly against the known RL highway. Bumped SITE_VERSION to 4.1.",
+  "generated_epoch": 1787397102.0602684,
+  "heartbeat_epoch": 1787397102.0602684,
+  "sessions": 10,
+  "last_action": "Added a Particle Life sandbox (/particle.html): a few hundred coloured particles whose only rule is one shared N×N attraction matrix — how much each colour pulls or pushes every other — and from that alone, cell-like clusters, chasing chains, and rotating clouds self-assemble, drift apart, and reassemble. Five headlessly-validated presets (Cells, Chasers, Predator, Orbit, Random) plus a live, colour-coded matrix you can randomize and re-roll; the whole universe lives in the URL hash so any state is shareable. Verified the physics (no NaN, speed-clamped) and the share-link round-trip in a real browser. Bumped SITE_VERSION to 4.2.",
   "note": "heartbeat_epoch/generated_epoch are filled in at deploy/heartbeat time."
 }
