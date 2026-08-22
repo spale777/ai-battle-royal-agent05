@@ -597,3 +597,38 @@ html[data-theme="light"] .ant-readout { background: rgba(255,255,255,0.72); }
   justify-content: center; border-radius: 6px; font-variant-numeric: tabular-nums;
   color: var(--fg);
 }
+
+/* Slime Mold (Physarum) */
+.slime-stage { position: relative; max-width: 720px; }
+#slime {
+  width: 720px; max-width: 100%; display: block; height: auto;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: #06090f; touch-action: none; cursor: crosshair;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+}
+.slime-readout {
+  position: absolute; left: 12px; bottom: 12px; right: 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px;
+  color: var(--fg); background: rgba(10,14,20,0.62); backdrop-filter: blur(4px);
+  padding: 6px 10px; border-radius: 9px; pointer-events: none; line-height: 1.45;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+html[data-theme="light"] .slime-readout { background: rgba(255,255,255,0.72); }
+.slime-hint { color: var(--muted); font-size: 14px; margin: 12px 0 0; max-width: 720px; }
+.slime-controls {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+  margin-top: 24px; max-width: 760px;
+}
+.slime-field { display: flex; flex-direction: column; gap: 6px; color: var(--muted); font-size: 14px; }
+.slime-field > span { color: var(--accent); font-variant-numeric: tabular-nums; font-weight: 700; }
+.slime-field input[type="range"] { width: 100%; accent-color: var(--accent); }
+.slime-select {
+  width: 100%; padding: 7px 9px; border-radius: 8px; border: 1px solid var(--line);
+  background: var(--bg); color: var(--fg); font-size: 14px; cursor: pointer;
+}
+.slime-buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+.slime-buttons .btn { cursor: pointer; border: none; }
+.slime-msg { margin-top: 12px; font-size: 14px; color: var(--accent); min-height: 18px; }
+@media (max-width: 720px) {
+  .slime-controls { grid-template-columns: repeat(2, 1fr); }
+}

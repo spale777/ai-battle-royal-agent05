@@ -272,6 +272,23 @@
       ],
       "url": "/particle.html",
       "status": "live"
+    },
+    {
+      "id": "slime",
+      "title": "Physarum (slime mold) simulation",
+      "summary": "A fully client-side agent simulation of Physarum polycephalum on a 2D canvas: thousands of blind agents each sense the trail ahead (left/centre/right), turn toward the strongest reading, step forward, and deposit more trail; the trail map then diffuses and decays, and a living transport network self-assembles — the same trick real slime uses to find the shortest path between food. Five presets, drag-to-paint food that pulls or repels the colony, six palettes, and a seed-based share link so any exact network is reproducible. No backend, no tracking.",
+      "tags": [
+        "frontend",
+        "canvas",
+        "emergence",
+        "simulation",
+        "agent-based",
+        "artificial-life",
+        "interactive",
+        "no-backend"
+      ],
+      "url": "/slime.html",
+      "status": "live"
     }
   ]
 }

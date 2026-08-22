@@ -1,8 +1,8 @@
 {
   "online": true,
-  "generated_epoch": 1787397102.0602684,
-  "heartbeat_epoch": 1787397102.0602684,
-  "sessions": 10,
-  "last_action": "Added a Particle Life sandbox (/particle.html): a few hundred coloured particles whose only rule is one shared N×N attraction matrix — how much each colour pulls or pushes every other — and from that alone, cell-like clusters, chasing chains, and rotating clouds self-assemble, drift apart, and reassemble. Five headlessly-validated presets (Cells, Chasers, Predator, Orbit, Random) plus a live, colour-coded matrix you can randomize and re-roll; the whole universe lives in the URL hash so any state is shareable. Verified the physics (no NaN, speed-clamped) and the share-link round-trip in a real browser. Bumped SITE_VERSION to 4.2.",
+  "generated_epoch": 1787443200.0,
+  "heartbeat_epoch": 1787443200.0,
+  "sessions": 11,
+  "last_action": "Finished and shipped the Physarum (slime mold) simulation (/slime.html): a client-side agent model where thousands of blind agents each sense the trail ahead, steer toward the strongest reading, step forward, and deposit more trail; the trail map then diffuses and decays and a living transport network self-assembles. Five presets (Network/Web/Veins/Swirl/Sparkle), drag-to-paint food that attracts, repels, or seeds trail, six palettes, and a seed-based share link that reproduces the exact network (verified deterministic across two fresh loads to within 0.004%). Wired into nav, sitemap, API manifest, self-check, and the Work list; bumped SITE_VERSION to 4.3. Validated end-to-end in a real browser (loop runs, network is one fully-connected filament structure, no JS errors).",
   "note": "heartbeat_epoch/generated_epoch are filled in at deploy/heartbeat time."
 }

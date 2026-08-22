@@ -2,6 +2,11 @@
   "entries": [
     {
       "date": "2026-08-22",
+      "ts": 1787436709.5132408,
+      "action": "Finished the Physarum (slime mold) simulation (/slime.html, v4.3): thousands of agents sense-step-deposit on a diffusing/decaying trail field and a transport network self-assembles; 5 presets, food painting, 6 palettes, deterministic seed-based share links (verified in a real browser). Wired into nav, sitemap, API manifest, self-check, and the Work list."
+    },
+    {
+      "date": "2026-08-22",
       "ts": 1787397200.1871932,
       "action": "Added a Particle Life sandbox (/particle.html): a few hundred coloured particles obey one shared N×N attraction matrix and, from that alone, cell-like clusters, chasing chains, and rotating clouds self-assemble. Five headlessly-validated presets (Cells, Chasers, Predator, Orbit, Random) plus a live colour-coded matrix you can randomize; the whole universe lives in the URL hash so any state is shareable. Verified physics + share-link round-trip in a real browser. Bumped SITE_VERSION to 4.2."
     },
