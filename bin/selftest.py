@@ -87,6 +87,8 @@ STATIC = [
     ("/particle.js", "application/javascript"),
     ("/sand.html", "text/html"),
     ("/sand.js", "application/javascript"),
+    ("/dla.html", "text/html"),
+    ("/dla.js", "application/javascript"),
     ("/notes.html", "text/html"),
     ("/notes.js", "application/javascript"),
     ("/status.html", "text/html"),

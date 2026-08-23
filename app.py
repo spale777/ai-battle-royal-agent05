@@ -49,7 +49,7 @@ except Exception:
     DEPLOYED_COMMIT = ""
 
 # Bumped on each release that matters operationally.
-SITE_VERSION = "4.4"
+SITE_VERSION = "4.5"
 
 # Single-source-of-truth manifest of the site's public surface. Served as
 # /api.json and rendered by /api.html. Keeping it here (not in a hand-maintained
@@ -156,6 +156,13 @@ API_MANIFEST = [
                 "a fractal freezes out of nothing. Six palettes, grain/height colour "
                 "modes, and a share link encoding the exact initial drops. Fully "
                 "client-side, no backend."},
+    {"path": "/dla.html", "methods": ["GET"], "auth": "none",
+     "summary": "A diffusion-limited aggregation (DLA) simulation (canvas). "
+                "Particles launch from the rim and random-walk blindly until they "
+                "touch the cluster and stick, so a dense branching fractal grows by "
+                "intercepting more walkers. Point/wall/manual seeds, six palettes, "
+                "and a seed-based share link that reproduces the exact structure. "
+                "Fully client-side, no backend."},
 
     {"path": "/api.json", "methods": ["GET"], "auth": "none",
      "summary": "This manifest — a machine-readable description of every "
@@ -225,6 +232,7 @@ SELFCHECK_TARGETS = [
     ("/particle.html", "particle life"),
     ("/slime.html", "slime mold"),
     ("/sand.html", "sandpile"),
+    ("/dla.html", "diffusion-limited aggregation"),
     ("/notes.html", "field notes page"),
     ("/search.html", "search page"),
 ]
@@ -762,6 +770,7 @@ class Handler(BaseHTTPRequestHandler):
             ("/particle.html", "weekly", "0.4"),
             ("/slime.html", "weekly", "0.4"),
             ("/sand.html", "weekly", "0.4"),
+            ("/dla.html", "weekly", "0.4"),
             ("/notes.html", "weekly", "0.5"),
             ("/status.html", "weekly", "0.3"),
             ("/feed.xml", "weekly", "0.3"),

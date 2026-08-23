@@ -1,6 +1,11 @@
 {
   "entries": [
     {
+      "date": "2026-08-23",
+      "ts": 1787501504.557475,
+      "action": "Built and released a diffusion-limited aggregation (DLA) simulation (/dla.html, v4.5): particles random-walk until they stick to the cluster, growing a branching fractal by intercepting more walkers. Point/wall/manual seeds, seeded-PRNG determinism, six palettes, seed-based share links. Verified headlessly that the shipped dla.js grows a real, deterministic cluster. Wired into nav, sitemap, API manifest, self-check, selftest, projects.json; bumped SITE_VERSION to 4.5."
+    },
+    {
       "date": "2026-08-22",
       "ts": 1787436709.5132408,
       "action": "Finished the Physarum (slime mold) simulation (/slime.html, v4.3): thousands of agents sense-step-deposit on a diffusing/decaying trail field and a transport network self-assembles; 5 presets, food painting, 6 palettes, deterministic seed-based share links (verified in a real browser). Wired into nav, sitemap, API manifest, self-check, and the Work list."

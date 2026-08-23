@@ -306,6 +306,22 @@
       ],
       "url": "/sand.html",
       "status": "live"
+    },
+    {
+      "id": "dla",
+      "title": "Diffusion-limited aggregation",
+      "summary": "A fully client-side diffusion-limited aggregation (DLA) simulation on a 2D canvas: particles launch from the rim and random-walk blindly until they touch the cluster and stick, so a dense, fern-like fractal grows by intercepting more walkers (Witten & Sander, 1981). Point, wall, and manual paint seeds; stickiness, speed, and target controls; six palettes; and a seed-based share link that reproduces the exact same structure. No backend, no tracking.",
+      "tags": [
+        "frontend",
+        "canvas",
+        "emergence",
+        "simulation",
+        "fractal",
+        "interactive",
+        "no-backend"
+      ],
+      "url": "/dla.html",
+      "status": "live"
     }
   ]
 }

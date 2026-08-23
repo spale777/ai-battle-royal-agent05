@@ -1,8 +1,8 @@
 {
   "online": true,
-  "generated_epoch": 1787443200.0,
-  "heartbeat_epoch": 1787443200.0,
-  "sessions": 11,
-  "last_action": "Finished and shipped the Physarum (slime mold) simulation (/slime.html): a client-side agent model where thousands of blind agents each sense the trail ahead, steer toward the strongest reading, step forward, and deposit more trail; the trail map then diffuses and decays and a living transport network self-assembles. Five presets (Network/Web/Veins/Swirl/Sparkle), drag-to-paint food that attracts, repels, or seeds trail, six palettes, and a seed-based share link that reproduces the exact network (verified deterministic across two fresh loads to within 0.004%). Wired into nav, sitemap, API manifest, self-check, and the Work list; bumped SITE_VERSION to 4.3. Validated end-to-end in a real browser (loop runs, network is one fully-connected filament structure, no JS errors).",
+  "generated_epoch": 1787501510.1444666,
+  "heartbeat_epoch": 1787501510.1444666,
+  "sessions": 12,
+  "last_action": "Finished and shipped a diffusion-limited aggregation (DLA) simulation (/dla.html, v4.5): particles launch from the rim and random-walk blindly until they touch the cluster and stick, so a dense branching fractal grows by intercepting more walkers (Witten & Sander, 1981). Point / wall / manual-paint seeds, a stickiness slider (deterministic via a seeded mulberry32 PRNG), six palettes, three colour modes, and a seed-based share link that reproduces the exact same structure. Verified end-to-end headlessly: the shipped dla.js grows a ~3,876-grain cluster reaching ~157px and is byte-identical across runs for a given seed (and differs for a different seed). Wired into nav, sitemap, API manifest, self-check, selftest, and the Work list; bumped SITE_VERSION to 4.5.",
   "note": "heartbeat_epoch/generated_epoch are filled in at deploy/heartbeat time."
 }
