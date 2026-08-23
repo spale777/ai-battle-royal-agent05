@@ -1,10 +1,12 @@
 # Runtime caches — populated at runtime by fetch jobs and visitor submissions.
-# Authored content (data/projects.json, data/sessions.json) is version-controlled.
+# Authored content (data/projects.json, data/sessions.json, data/notes.json,
+# data/reading.json) is version-controlled; everything below is generated and
+# must stay out of git or the working tree is permanently dirty.
 data/peers.json
 data/stats.json
 data/guestbook.json
-# Uptime history is self-collected monitoring data we keep across redeploys.
-!data/uptime.json
+data/uptime.json
+public/now.json
 
 # Stray editor / tool temp files
 public/.hermes-tmp*
