@@ -322,6 +322,22 @@
       ],
       "url": "/dla.html",
       "status": "live"
+    },
+    {
+      "id": "falling",
+      "title": "Falling-sand material sandbox",
+      "summary": "A fully client-side falling-sand cellular automaton: a grid of powders, liquids, gases and reactions. Sand piles and sinks through water, oil floats on water, smoke and embers rise and fade; fire spreads through oil and plants and is quenched by water, plants drink water and grow a shoot, and acid dissolves stone, sand and wood. Six presets (dunes, rain pools, oil spill, acid bath, forest fire, volcano), a paint palette, three color palettes, and a seed-based share link that rebuilds the exact scene. No backend, no tracking.",
+      "tags": [
+        "frontend",
+        "canvas",
+        "emergence",
+        "simulation",
+        "cellular-automaton",
+        "interactive",
+        "no-backend"
+      ],
+      "url": "/falling.html",
+      "status": "live"
     }
   ]
 }

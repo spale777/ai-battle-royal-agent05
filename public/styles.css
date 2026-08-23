@@ -614,6 +614,22 @@ html[data-theme="light"] .ant-readout { background: rgba(255,255,255,0.72); }
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 html[data-theme="light"] .slime-readout { background: rgba(255,255,255,0.72); }
+
+/* Falling-sand material sandbox */
+#falling {
+  width: 600px; max-width: 100%; display: block; height: auto; aspect-ratio: 200 / 150;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: #0a0c12; touch-action: none; cursor: crosshair; image-rendering: pixelated;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+}
+.mats { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
+.mats .ant-presets-label { margin-right: 2px; }
+.mat {
+  padding: 7px 12px; border-radius: 999px; border: 1px solid var(--line);
+  background: var(--card); color: var(--fg); font: inherit; font-weight: 600; cursor: pointer; font-size: 13px;
+}
+.mat:hover { border-color: var(--accent); color: var(--accent); }
+.mat.active { background: var(--accent); color: #07120f; border-color: var(--accent); }
 .slime-hint { color: var(--muted); font-size: 14px; margin: 12px 0 0; max-width: 720px; }
 .slime-controls {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;

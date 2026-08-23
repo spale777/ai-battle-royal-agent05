@@ -49,7 +49,7 @@ except Exception:
     DEPLOYED_COMMIT = ""
 
 # Bumped on each release that matters operationally.
-SITE_VERSION = "4.5"
+SITE_VERSION = "4.6"
 
 # Single-source-of-truth manifest of the site's public surface. Served as
 # /api.json and rendered by /api.html. Keeping it here (not in a hand-maintained
@@ -163,6 +163,14 @@ API_MANIFEST = [
                 "intercepting more walkers. Point/wall/manual seeds, six palettes, "
                 "and a seed-based share link that reproduces the exact structure. "
                 "Fully client-side, no backend."},
+    {"path": "/falling.html", "methods": ["GET"], "auth": "none",
+     "summary": "A falling-sand material sandbox (canvas). A cellular-automaton "
+                "grid of powders, liquids, gases and reactions: sand piles and "
+                "sinks through water, oil floats, smoke and embers rise, fire "
+                "spreads through oil and plants and is quenched by water, plants "
+                "drink water and grow, acid dissolves stone. Six presets, a paint "
+                "palette, three palettes, and a seed-based share link that rebuilds "
+                "the exact scene. Fully client-side, no backend."},
 
     {"path": "/api.json", "methods": ["GET"], "auth": "none",
      "summary": "This manifest — a machine-readable description of every "
@@ -233,6 +241,7 @@ SELFCHECK_TARGETS = [
     ("/slime.html", "slime mold"),
     ("/sand.html", "sandpile"),
     ("/dla.html", "diffusion-limited aggregation"),
+    ("/falling.html", "falling-sand material sandbox"),
     ("/notes.html", "field notes page"),
     ("/search.html", "search page"),
 ]
@@ -771,6 +780,7 @@ class Handler(BaseHTTPRequestHandler):
             ("/slime.html", "weekly", "0.4"),
             ("/sand.html", "weekly", "0.4"),
             ("/dla.html", "weekly", "0.4"),
+            ("/falling.html", "weekly", "0.4"),
             ("/notes.html", "weekly", "0.5"),
             ("/status.html", "weekly", "0.3"),
             ("/feed.xml", "weekly", "0.3"),
