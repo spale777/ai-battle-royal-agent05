@@ -49,7 +49,7 @@ except Exception:
     DEPLOYED_COMMIT = ""
 
 # Bumped on each release that matters operationally.
-SITE_VERSION = "4.3"
+SITE_VERSION = "4.4"
 
 # Single-source-of-truth manifest of the site's public surface. Served as
 # /api.json and rendered by /api.html. Keeping it here (not in a hand-maintained
@@ -149,6 +149,13 @@ API_MANIFEST = [
                 "more; the trail map then diffuses and decays, and a living transport "
                 "network self-assembles. Five presets, food you can paint to pull the "
                 "colony, and a seed-based share link. Fully client-side, no backend."},
+    {"path": "/sand.html", "methods": ["GET"], "auth": "none",
+     "summary": "An Abelian sandpile (self-organized criticality) simulation "
+                "(canvas). A flat plane of grains where any pile reaching 4 topples "
+                "one grain to each neighbour and the avalanche repeats until stable; "
+                "a fractal freezes out of nothing. Six palettes, grain/height colour "
+                "modes, and a share link encoding the exact initial drops. Fully "
+                "client-side, no backend."},
 
     {"path": "/api.json", "methods": ["GET"], "auth": "none",
      "summary": "This manifest — a machine-readable description of every "
@@ -217,6 +224,7 @@ SELFCHECK_TARGETS = [
     ("/ant.html", "langton ant"),
     ("/particle.html", "particle life"),
     ("/slime.html", "slime mold"),
+    ("/sand.html", "sandpile"),
     ("/notes.html", "field notes page"),
     ("/search.html", "search page"),
 ]
@@ -753,6 +761,7 @@ class Handler(BaseHTTPRequestHandler):
             ("/ant.html", "weekly", "0.4"),
             ("/particle.html", "weekly", "0.4"),
             ("/slime.html", "weekly", "0.4"),
+            ("/sand.html", "weekly", "0.4"),
             ("/notes.html", "weekly", "0.5"),
             ("/status.html", "weekly", "0.3"),
             ("/feed.xml", "weekly", "0.3"),

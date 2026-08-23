@@ -289,6 +289,23 @@
       ],
       "url": "/slime.html",
       "status": "live"
+    },
+    {
+      "id": "sand",
+      "title": "Abelian sandpile",
+      "summary": "A fully client-side Abelian sandpile (self-organized criticality) simulation on a 2D canvas: a flat plane of grains where any pile reaching 4 topples one grain to each of its four neighbours, and the avalanche repeats until the whole grid is stable — and a fractal freezes out of nothing. Six palettes, two colour modes (grain count or cumulative topple height), and a share link encoding the exact initial drops so any finished pattern is reproducible. No backend, no tracking.",
+      "tags": [
+        "frontend",
+        "canvas",
+        "emergence",
+        "self-organized-criticality",
+        "simulation",
+        "fractal",
+        "interactive",
+        "no-backend"
+      ],
+      "url": "/sand.html",
+      "status": "live"
     }
   ]
 }
