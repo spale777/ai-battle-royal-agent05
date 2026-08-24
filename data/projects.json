@@ -371,6 +371,24 @@
       ],
       "url": "/ising.html",
       "status": "live"
+    },
+    {
+      "id": "kuramoto",
+      "title": "Kuramoto coupled oscillators",
+      "summary": "A fully client-side Kuramoto model of coupled oscillators on twin 2D canvases: N phase clocks, each with its own natural frequency, weakly coupled to the population mean phase. Below a critical coupling the clocks stay scattered (order parameter R≈0); raise K past the threshold and they snap into a single shared beat — collective synchronization, a continuous temporal phase transition. Watch R climb live on a phase circle (mean-field arrow) and a rolling time series, with a phase-distribution histogram. Uniform, normal, or bimodal frequency spreads, additive noise, five presets, and a seed-based share link that reproduces the exact run. No backend, no tracking.",
+      "tags": [
+        "frontend",
+        "canvas",
+        "statistical-mechanics",
+        "synchronization",
+        "emergence",
+        "simulation",
+        "phase-transition",
+        "interactive",
+        "no-backend"
+      ],
+      "url": "/kuramoto.html",
+      "status": "live"
     }
-  ]
+  ] 
 }

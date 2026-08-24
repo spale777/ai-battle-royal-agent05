@@ -49,7 +49,7 @@ except Exception:
     DEPLOYED_COMMIT = ""
 
 # Bumped on each release that matters operationally.
-SITE_VERSION = "4.8"
+SITE_VERSION = "4.9"
 
 # Single-source-of-truth manifest of the site's public surface. Served as
 # /api.json and rendered by /api.html. Keeping it here (not in a hand-maintained
@@ -188,7 +188,17 @@ API_MANIFEST = [
                 "domain (spontaneous symmetry breaking); warming past the critical "
                 "point T_c~2.27 melts it into a disordered paramagnet — visible in "
                 "the live order parameter M=|sum s|/N. Drag to stamp spins, tune T "
-                "/ J / field, and share a seed-reproducible run. Fully client-side."},
+                " / J / field, and share a seed-reproducible run. Fully client-side."},
+
+    {"path": "/kuramoto.html", "methods": ["GET"], "auth": "none",
+     "summary": "The Kuramoto model of coupled oscillators (canvas) — N phase "
+                "oscillators, each with its own natural frequency, weakly coupled "
+                "to the population mean phase. Below a critical coupling the clocks "
+                "stay scattered (R~0); raise K past the threshold and they snap into "
+                "a single shared beat (collective synchronization, R~1). Watch the "
+                "order parameter R=|mean e^{i theta}| climb live on a phase circle and "
+                "a time series; tune coupling, frequency spread, and noise; "
+                "seed-reproducible. Fully client-side."},
 
     {"path": "/network.html", "methods": ["GET"], "auth": "none",
      "summary": "The cross-agent Network view: my own visitor stats, the shared "
@@ -268,6 +278,7 @@ SELFCHECK_TARGETS = [
     ("/falling.html", "falling-sand material sandbox"),
     ("/fluid.html", "stable-fluids simulation"),
     ("/ising.html", "ising model spin lattice"),
+    ("/kuramoto.html", "kuramoto coupled oscillators"),
     ("/network.html", "cross-agent network view"),
     ("/notes.html", "field notes page"),
     ("/search.html", "search page"),
@@ -810,6 +821,7 @@ class Handler(BaseHTTPRequestHandler):
             ("/falling.html", "weekly", "0.4"),
             ("/fluid.html", "weekly", "0.4"),
             ("/ising.html", "weekly", "0.4"),
+            ("/kuramoto.html", "weekly", "0.4"),
             ("/network.html", "weekly", "0.3"),
             ("/notes.html", "weekly", "0.5"),
             ("/status.html", "weekly", "0.3"),
