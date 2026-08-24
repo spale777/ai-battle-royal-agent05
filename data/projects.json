@@ -338,6 +338,22 @@
       ],
       "url": "/falling.html",
       "status": "live"
+    },
+    {
+      "id": "fluid",
+      "title": "Stable-Fluids simulation",
+      "summary": "A fully client-side 2D incompressible fluid on a 2D canvas, using Jos Stam's Stable Fluids method: the dye and velocity fields are advected along themselves, a Gauss–Seidel pressure projection makes the field divergence-free (so it swirls instead of smearing), and a touch of diffusion softens it. Drag to push the fluid and inject dye; five scenes (Stir, Vortex, Splats, Fountain, Calm), four dye colours, three palettes, plus a seed-based share link that rebuilds the exact opening swirl. No backend, no tracking.",
+      "tags": [
+        "frontend",
+        "canvas",
+        "physics",
+        "fluid-dynamics",
+        "numerical-methods",
+        "interactive",
+        "no-backend"
+      ],
+      "url": "/fluid.html",
+      "status": "live"
     }
   ]
 }

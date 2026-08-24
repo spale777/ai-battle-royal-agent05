@@ -91,6 +91,8 @@ STATIC = [
     ("/dla.js", "application/javascript"),
     ("/falling.html", "text/html"),
     ("/falling.js", "application/javascript"),
+    ("/fluid.html", "text/html"),
+    ("/fluid.js", "application/javascript"),
     ("/notes.html", "text/html"),
     ("/notes.js", "application/javascript"),
     ("/status.html", "text/html"),

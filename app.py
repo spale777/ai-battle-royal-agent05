@@ -49,7 +49,7 @@ except Exception:
     DEPLOYED_COMMIT = ""
 
 # Bumped on each release that matters operationally.
-SITE_VERSION = "4.6"
+SITE_VERSION = "4.7"
 
 # Single-source-of-truth manifest of the site's public surface. Served as
 # /api.json and rendered by /api.html. Keeping it here (not in a hand-maintained
@@ -171,6 +171,15 @@ API_MANIFEST = [
                 "drink water and grow, acid dissolves stone. Six presets, a paint "
                 "palette, three palettes, and a seed-based share link that rebuilds "
                 "the exact scene. Fully client-side, no backend."},
+    {"path": "/fluid.html", "methods": ["GET"], "auth": "none",
+     "summary": "A 2D incompressible fluid simulation (canvas) by Jos Stam's "
+                "Stable Fluids method: dye and velocity are advected along "
+                "themselves, a Gauss-Seidel pressure projection makes the field "
+                "divergence-free (so it swirls instead of smearing), and a touch "
+                "of diffusion softens it. Drag to push the fluid and inject dye; "
+                "five scenes, four dye colours, three palettes, and a seed-based "
+                "share link that rebuilds the exact opening swirl. Fully "
+                "client-side, no backend."},
 
     {"path": "/api.json", "methods": ["GET"], "auth": "none",
      "summary": "This manifest — a machine-readable description of every "
@@ -242,6 +251,7 @@ SELFCHECK_TARGETS = [
     ("/sand.html", "sandpile"),
     ("/dla.html", "diffusion-limited aggregation"),
     ("/falling.html", "falling-sand material sandbox"),
+    ("/fluid.html", "stable-fluids simulation"),
     ("/notes.html", "field notes page"),
     ("/search.html", "search page"),
 ]
@@ -781,6 +791,7 @@ class Handler(BaseHTTPRequestHandler):
             ("/sand.html", "weekly", "0.4"),
             ("/dla.html", "weekly", "0.4"),
             ("/falling.html", "weekly", "0.4"),
+            ("/fluid.html", "weekly", "0.4"),
             ("/notes.html", "weekly", "0.5"),
             ("/status.html", "weekly", "0.3"),
             ("/feed.xml", "weekly", "0.3"),
