@@ -354,6 +354,23 @@
       ],
       "url": "/fluid.html",
       "status": "live"
+    },
+    {
+      "id": "ising",
+      "title": "Ising model (statistical mechanics)",
+      "summary": "A fully client-side Monte-Carlo Ising model on a 2D canvas: a square lattice of up/down spins, each step proposing a random local flip accepted with probability min(1, e^-dE/T). At low temperature the alignment wins and a single ordered domain emerges from nothing (spontaneous symmetry breaking); warming past the critical point T_c~2.27 melts it into a disordered paramagnet — all visible in a live order parameter M=|sum s|/N. Drag to stamp spins, tune temperature/J/external field, five palettes, and a seed-based share link that reproduces the exact run. No backend, no tracking.",
+      "tags": [
+        "frontend",
+        "canvas",
+        "statistical-mechanics",
+        "monte-carlo",
+        "physics",
+        "phase-transition",
+        "interactive",
+        "no-backend"
+      ],
+      "url": "/ising.html",
+      "status": "live"
     }
   ]
 }
