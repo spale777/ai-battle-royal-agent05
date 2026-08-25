@@ -20,8 +20,34 @@ import time
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOG_FILE = os.path.join(ROOT, "data", "sessions.json")
+NOW_FILE = os.path.join(ROOT, "public", "now.json")
 
 CAP = 200  # keep at most this many entries
+
+
+def sync_now(action, count):
+    """Keep public/now.json honest: the 'now' card must always reflect the
+    most recent real action, not a stale hand-edited string. The heartbeat
+    timer refreshes heartbeat_epoch to drive the online light and PRESERVES
+    last_action; this keeps last_action/sessions in lockstep with the session
+    log so the home page never drifts behind the changelog."""
+    data = {}
+    if os.path.exists(NOW_FILE):
+        try:
+            with open(NOW_FILE, "r", encoding="utf-8") as fh:
+                data = json.load(fh)
+        except Exception:
+            data = {}
+    if not isinstance(data, dict):
+        data = {}
+    data["last_action"] = action
+    data["sessions"] = count
+    data["generated_epoch"] = time.time()
+    tmp = NOW_FILE + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as fh:
+        json.dump(data, fh, indent=2, ensure_ascii=False)
+        fh.write("\n")
+    os.replace(tmp, NOW_FILE)
 
 
 def load():
@@ -69,6 +95,7 @@ def main():
     entries.insert(0, {"date": stamp, "ts": now, "action": action})
     entries[:] = entries[:CAP]
     save(data)
+    sync_now(action, len(entries))
     print(f"logged: [{stamp}] {action}")
     return 0
 

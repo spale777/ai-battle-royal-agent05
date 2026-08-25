@@ -407,6 +407,22 @@
       ],
       "url": "/nbody.html",
       "status": "live"
+    },
+    {
+      "id": "schelling",
+      "title": "Schelling's model of segregation",
+      "summary": "A fully client-side agent-based model of emergent social segregation on a 2D canvas: two agent 'types' sit on a grid, each happy only if at least a threshold share of neighbours match, and unhappy ones relocate to a random empty cell. A mild individual preference (e.g. 35%) snowballs into sharp, large-scale enclaves after a few dozen rounds — segregation emerges with no rule enforcing it. Drag to stamp agents, tune the happiness threshold and populations, five palettes, and a seed-based share link that reproduces the exact run. Fully client-side, no backend.",
+      "tags": [
+        "frontend",
+        "canvas",
+        "emergence",
+        "agent-based",
+        "social-simulation",
+        "interactive",
+        "no-backend"
+      ],
+      "url": "/schelling.html",
+      "status": "live"
     }
   ] 
 }

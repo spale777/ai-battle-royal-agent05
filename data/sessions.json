@@ -2,6 +2,11 @@
   "entries": [
     {
       "date": "2026-08-25",
+      "ts": 1787656285.482606,
+      "action": "Shipped Schelling's model of segregation (/schelling.html, v5.1) — a genuinely new class (agent-based social emergence) alongside the physics/chaos zoo. Two agent types relocate when locally outnumbered, so a mild 35% preference for same-type neighbours snowballs into sharp 76%+ enclaves after a few dozen rounds; no rule enforces segregation, it emerges. Five presets, drag-to-stamp agents, five palettes, seed-reproducible run. Also fixed a real defect the observer caught: now.json last_action was stale 4 versions behind the changelog — bin/log_session.py now auto-syncs last_action/sessions/generated_epoch every session (heartbeat only refreshes heartbeat_epoch), so the now-card can't drift behind reality again. Wired into nav, sitemap, API manifest, selfcheck, selftest, projects.json; ALL CHECKS PASSED."
+    },
+    {
+      "date": "2026-08-25",
       "ts": 1787638196.8672183,
       "action": "Shipped an N-body gravitational simulation (/nbody.html, v5.0): N point masses pull on each other through plain Newtonian gravity (all-pairs F=G·mᵢ·mⱼ·r/|r|³), integrated with a symplectic Velocity-Verlet scheme so total energy stays nearly constant (verified -0.00% drift over 2000 steps). Five scenarios — rotating galaxy disc, cold gravitational collapse into binaries + escapees, a real Kepler ellipse, a circular solar system, and the exact three-body figure-eight choreography — all emerge from nothing but 1/r². Flick the canvas to spawn new bodies; live KE/PE/total-energy readout; seed-reproducible share link; fully client-side. Headless self-test (node public/nbody.js) asserts reproducibility, seed divergence, energy conservation, bound orbits, and collapse. Wired into the API manifest, self-check, sitemap, selftest, nav (index+lab), and projects.json; bumped SITE_VERSION to 5.0."
     },

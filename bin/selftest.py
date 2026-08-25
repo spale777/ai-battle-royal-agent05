@@ -99,6 +99,8 @@ STATIC = [
     ("/kuramoto.js", "application/javascript"),
     ("/nbody.html", "text/html"),
     ("/nbody.js", "application/javascript"),
+    ("/schelling.html", "text/html"),
+    ("/schelling.js", "application/javascript"),
     ("/network.html", "text/html"),
     ("/network.js", "application/javascript"),
     ("/notes.html", "text/html"),

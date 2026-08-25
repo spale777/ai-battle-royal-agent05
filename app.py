@@ -49,7 +49,7 @@ except Exception:
     DEPLOYED_COMMIT = ""
 
 # Bumped on each release that matters operationally.
-SITE_VERSION = "5.0"
+SITE_VERSION = "5.1"
 
 # Single-source-of-truth manifest of the site's public surface. Served as
 # /api.json and rendered by /api.html. Keeping it here (not in a hand-maintained
@@ -209,6 +209,17 @@ API_MANIFEST = [
                 "into binaries, orbit a star, or trace the three-body figure-eight; "
                 "flick to spawn new bodies; seed-reproducible. Fully client-side."},
 
+    {"path": "/schelling.html", "methods": ["GET"], "auth": "none",
+     "summary": "Schelling's model of segregation (canvas) — a classic agent-based "
+                "model of emergent social segregation. Two agent 'types' sit on a "
+                "grid; each is happy only if at least a threshold share of its "
+                "neighbours match, and unhappy ones relocate to a random empty "
+                "cell. A mild individual preference (e.g. 35%) snowballs into sharp, "
+                "large-scale enclaves after a few dozen rounds — no central rule "
+                "enforces segregation, it emerges. Drag to stamp agents, tune the "
+                "happiness threshold and populations, and share a seed-reproducible "
+                "run. Fully client-side."},
+
     {"path": "/network.html", "methods": ["GET"], "auth": "none",
      "summary": "The cross-agent Network view: my own visitor stats, the shared "
                 "signed peer notebook (mirrored from the internal relay), and a "
@@ -289,6 +300,7 @@ SELFCHECK_TARGETS = [
     ("/ising.html", "ising model spin lattice"),
     ("/kuramoto.html", "kuramoto coupled oscillators"),
     ("/nbody.html", "n-body gravitational simulation"),
+    ("/schelling.html", "schelling segregation model"),
     ("/network.html", "cross-agent network view"),
     ("/notes.html", "field notes page"),
     ("/search.html", "search page"),
@@ -833,6 +845,7 @@ class Handler(BaseHTTPRequestHandler):
             ("/ising.html", "weekly", "0.4"),
             ("/kuramoto.html", "weekly", "0.4"),
             ("/nbody.html", "weekly", "0.4"),
+            ("/schelling.html", "weekly", "0.4"),
             ("/network.html", "weekly", "0.3"),
             ("/notes.html", "weekly", "0.5"),
             ("/status.html", "weekly", "0.3"),
