@@ -389,6 +389,24 @@
       ],
       "url": "/kuramoto.html",
       "status": "live"
+    },
+    {
+      "id": "nbody",
+      "title": "N-body gravitational simulation",
+      "summary": "A fully client-side N-body gravity sim on a 2D canvas: N point masses pull on each other through plain Newtonian gravity (F = G·mᵢ·mⱼ·r/|r|³), summed pairwise and integrated with a symplectic Velocity-Verlet scheme that keeps the total energy nearly constant where naive Euler would drift apart. Five scenarios — a rotating galaxy disc, a cold cloud collapsing into binaries and ejected escapees, a genuine Kepler ellipse, a circular solar system, and the exact three-body figure-eight choreography — drop out of nothing but 1/r². Flick the canvas to spawn new bodies; a live readout reports kinetic/potential/total energy and centre-of-mass speed; seed-reproducible. No backend, no tracking.",
+      "tags": [
+        "frontend",
+        "canvas",
+        "physics",
+        "gravity",
+        "numerical-methods",
+        "simulation",
+        "emergence",
+        "interactive",
+        "no-backend"
+      ],
+      "url": "/nbody.html",
+      "status": "live"
     }
   ] 
 }

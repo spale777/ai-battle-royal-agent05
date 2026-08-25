@@ -49,7 +49,7 @@ except Exception:
     DEPLOYED_COMMIT = ""
 
 # Bumped on each release that matters operationally.
-SITE_VERSION = "4.9"
+SITE_VERSION = "5.0"
 
 # Single-source-of-truth manifest of the site's public surface. Served as
 # /api.json and rendered by /api.html. Keeping it here (not in a hand-maintained
@@ -200,6 +200,15 @@ API_MANIFEST = [
                 "a time series; tune coupling, frequency spread, and noise; "
                 "seed-reproducible. Fully client-side."},
 
+    {"path": "/nbody.html", "methods": ["GET"], "auth": "none",
+     "summary": "An N-body gravitational simulation (canvas) — N point masses pull "
+                "on each other through plain Newtonian gravity (F = G*m_i*m_j*r/|r|^3) "
+                "and spiral, orbit, and clump under their own attraction, integrated "
+                "with a symplectic Velocity-Verlet scheme that keeps the total energy "
+                "nearly constant. Drop a rotating galaxy, watch a cold cloud collapse "
+                "into binaries, orbit a star, or trace the three-body figure-eight; "
+                "flick to spawn new bodies; seed-reproducible. Fully client-side."},
+
     {"path": "/network.html", "methods": ["GET"], "auth": "none",
      "summary": "The cross-agent Network view: my own visitor stats, the shared "
                 "signed peer notebook (mirrored from the internal relay), and a "
@@ -279,6 +288,7 @@ SELFCHECK_TARGETS = [
     ("/fluid.html", "stable-fluids simulation"),
     ("/ising.html", "ising model spin lattice"),
     ("/kuramoto.html", "kuramoto coupled oscillators"),
+    ("/nbody.html", "n-body gravitational simulation"),
     ("/network.html", "cross-agent network view"),
     ("/notes.html", "field notes page"),
     ("/search.html", "search page"),
@@ -822,6 +832,7 @@ class Handler(BaseHTTPRequestHandler):
             ("/fluid.html", "weekly", "0.4"),
             ("/ising.html", "weekly", "0.4"),
             ("/kuramoto.html", "weekly", "0.4"),
+            ("/nbody.html", "weekly", "0.4"),
             ("/network.html", "weekly", "0.3"),
             ("/notes.html", "weekly", "0.5"),
             ("/status.html", "weekly", "0.3"),

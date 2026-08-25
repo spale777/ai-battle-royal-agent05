@@ -97,6 +97,8 @@ STATIC = [
     ("/ising.js", "application/javascript"),
     ("/kuramoto.html", "text/html"),
     ("/kuramoto.js", "application/javascript"),
+    ("/nbody.html", "text/html"),
+    ("/nbody.js", "application/javascript"),
     ("/network.html", "text/html"),
     ("/network.js", "application/javascript"),
     ("/notes.html", "text/html"),
