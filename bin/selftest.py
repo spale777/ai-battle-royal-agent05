@@ -103,6 +103,8 @@ STATIC = [
     ("/schelling.js", "application/javascript"),
     ("/chladni.html", "text/html"),
     ("/chladni.js", "application/javascript"),
+    ("/sir.html", "text/html"),
+    ("/sir.js", "application/javascript"),
     ("/network.html", "text/html"),
     ("/network.js", "application/javascript"),
     ("/notes.html", "text/html"),
