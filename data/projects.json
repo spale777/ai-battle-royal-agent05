@@ -423,6 +423,23 @@
       ],
       "url": "/schelling.html",
       "status": "live"
+    },
+    {
+      "id": "chladni",
+      "title": "Chladni plate / cymatics",
+      "summary": "A fully client-side stochastic-aggregation model of the classic vibrating-plate (Chladni) experiment on a 2D canvas: N grains random-walk with a step size proportional to the local amplitude of a standing-wave field, so they are flung away from loud regions and trapped on the quiet nodal lines, painting the Chladni figure. Four field types (cross, diagonal, concentric rings, superposed) and tuneable mode numbers give whole families of figures; a genuinely different mechanism class from the lattice / ODE sims in the zoo. Five presets, a faint amplitude-field ghost overlay, re-scatter replay, and a seed-based share link that reproduces the exact settling. Fully client-side, no backend.",
+      "tags": [
+        "frontend",
+        "canvas",
+        "emergence",
+        "stochastic",
+        "cymatics",
+        "simulation",
+        "interactive",
+        "no-backend"
+      ],
+      "url": "/chladni.html",
+      "status": "live"
     }
-  ] 
+  ]
 }

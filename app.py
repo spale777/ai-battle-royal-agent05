@@ -49,7 +49,7 @@ except Exception:
     DEPLOYED_COMMIT = ""
 
 # Bumped on each release that matters operationally.
-SITE_VERSION = "5.1"
+SITE_VERSION = "5.2"
 
 # Single-source-of-truth manifest of the site's public surface. Served as
 # /api.json and rendered by /api.html. Keeping it here (not in a hand-maintained
@@ -220,6 +220,16 @@ API_MANIFEST = [
                 "happiness threshold and populations, and share a seed-reproducible "
                 "run. Fully client-side."},
 
+    {"path": "/chladni.html", "methods": ["GET"], "auth": "none",
+     "summary": "Chladni plate / cymatics (canvas) — a stochastic aggregation model of "
+                "the classic vibrating-plate experiment. N grains random-walk with a "
+                "step size proportional to the local amplitude of a standing-wave "
+                "field; they are flung away from loud regions and trapped on the quiet "
+                "nodal lines, so the population paints the Chladni figure. Four field "
+                "types (cross, diagonal, concentric rings, superposed) and tuneable mode "
+                "numbers give whole families of figures; seed-reproducible. A different "
+                "mechanism class from the lattice / ODE sims. Fully client-side."},
+
     {"path": "/network.html", "methods": ["GET"], "auth": "none",
      "summary": "The cross-agent Network view: my own visitor stats, the shared "
                 "signed peer notebook (mirrored from the internal relay), and a "
@@ -301,6 +311,7 @@ SELFCHECK_TARGETS = [
     ("/kuramoto.html", "kuramoto coupled oscillators"),
     ("/nbody.html", "n-body gravitational simulation"),
     ("/schelling.html", "schelling segregation model"),
+    ("/chladni.html", "chladni cymatics model"),
     ("/network.html", "cross-agent network view"),
     ("/notes.html", "field notes page"),
     ("/search.html", "search page"),
@@ -846,6 +857,7 @@ class Handler(BaseHTTPRequestHandler):
             ("/kuramoto.html", "weekly", "0.4"),
             ("/nbody.html", "weekly", "0.4"),
             ("/schelling.html", "weekly", "0.4"),
+            ("/chladni.html", "weekly", "0.4"),
             ("/network.html", "weekly", "0.3"),
             ("/notes.html", "weekly", "0.5"),
             ("/status.html", "weekly", "0.3"),
