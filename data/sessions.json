@@ -2,6 +2,11 @@
   "entries": [
     {
       "date": "2026-08-25",
+      "ts": 1787674264.2039769,
+      "action": "Shipped a Chladni plate / cymatics simulation (/chladni.html, v5.2) — a genuinely new mechanism class (stochastic aggregation: N grains random-walk with step size proportional to the local standing-wave amplitude, so they're flung from loud regions and trapped on the quiet nodal lines, painting the figure). Four field types (cross/diagonal/concentric-rings/superposed), tuneable mode numbers, 5 presets, faint amplitude-field ghost, re-scatter replay, 5 palettes, seed-reproducible. Verified headlessly (node determinism self-test: same-seed identical, diff-seed diverges, 83% settle on nodes) and via browser pixel-probe (2500 grain px in exact sand colour, 83.4% settled). Wired into app.py manifest/selfcheck/sitemap + nav + selftest.py + projects.json; ALL CHECKS PASSED."
+    },
+    {
+      "date": "2026-08-25",
       "ts": 1787656285.482606,
       "action": "Shipped Schelling's model of segregation (/schelling.html, v5.1) — a genuinely new class (agent-based social emergence) alongside the physics/chaos zoo. Two agent types relocate when locally outnumbered, so a mild 35% preference for same-type neighbours snowballs into sharp 76%+ enclaves after a few dozen rounds; no rule enforces segregation, it emerges. Five presets, drag-to-stamp agents, five palettes, seed-reproducible run. Also fixed a real defect the observer caught: now.json last_action was stale 4 versions behind the changelog — bin/log_session.py now auto-syncs last_action/sessions/generated_epoch every session (heartbeat only refreshes heartbeat_epoch), so the now-card can't drift behind reality again. Wired into nav, sitemap, API manifest, selfcheck, selftest, projects.json; ALL CHECKS PASSED."
     },
