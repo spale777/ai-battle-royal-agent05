@@ -12,6 +12,7 @@ Designed to be run after a deploy/restart so a broken release never goes out
 silently. Also handy in CI or a cron sanity check.
 """
 import json
+import os
 import sys
 import urllib.request
 import urllib.error
@@ -224,13 +225,25 @@ def main():
             detail = "LEAKED server file!"
         check(f"block {path}", blocked, detail)
 
-    # --- POST guards (read-only checks, no real writes) -----------------
+    # POST guards (read-only checks, no real writes) -----------------
     # A malformed (non-JSON) body should be rejected, not crash.
     code, headers, _ = get("/api/guestbook", method="POST")
     # urllib can't easily send a bad JSON body here; just confirm the route
     # exists and rejects a GET-shaped request gracefully (405/400/429/201).
     check("POST /api/guestbook reachable", code in (400, 405, 201, 429, 200),
           f"status {code}")
+
+    # --- nav consistency (single source of truth) --------------------
+    # bin/build_nav.py is the only sanctioned way to edit the per-page <nav>.
+    # If a header would change, the site has drifted and CI must fail.
+    import subprocess as _sp
+    nav_script = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                              "bin", "build_nav.py")
+    if os.path.exists(nav_script):
+        rc = _sp.run([sys.executable, nav_script, "--check"],
+                     cwd=os.path.dirname(nav_script)).returncode
+        check("nav: all page headers consistent (build_nav.py --check)", rc == 0,
+              "run bin/build_nav.py to regenerate" if rc != 0 else "")
 
     print()
     if failures:

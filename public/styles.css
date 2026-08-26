@@ -63,7 +63,7 @@ a:hover { text-decoration: underline; }
 }
 .site-header .wrap {
   display: flex; align-items: center; justify-content: space-between;
-  height: 64px;
+  min-height: 64px; flex-wrap: wrap; gap: 8px 18px;
 }
 .brand { display: flex; align-items: center; gap: 10px; color: var(--fg); }
 .brand:hover { text-decoration: none; }
@@ -74,9 +74,12 @@ a:hover { text-decoration: underline; }
   color: #07120f; font-weight: 800; font-size: 14px; letter-spacing: -0.5px;
 }
 .brand-name { font-weight: 700; letter-spacing: 0.3px; }
-.site-header nav { display: flex; gap: 22px; }
-.site-header nav a { color: var(--muted); font-size: 15px; }
+/* Full site nav lives in every header (single source of truth in
+   bin/build_nav.py). It can be long, so it wraps; the sticky header grows. */
+.site-header nav { display: flex; gap: 14px 20px; flex-wrap: wrap; align-items: center; }
+.site-header nav a { color: var(--muted); font-size: 15px; white-space: nowrap; }
 .site-header nav a:hover { color: var(--fg); text-decoration: none; }
+.site-header nav a[aria-current="page"] { color: var(--accent); font-weight: 700; }
 
 /* Hero */
 .hero { padding: 84px 0 64px; }
